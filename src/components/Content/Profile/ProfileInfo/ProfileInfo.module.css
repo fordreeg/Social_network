@@ -1,0 +1,35 @@
+.wrapper {
+    box-shadow: 0 1px 0 0 #dce1e6, 0 0 0 1px #e7e8ec;
+    border-radius: 4px;
+    background-color: #ffff;
+    padding: 15px 20px;
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+.item {
+    padding: 5px 0 0;
+    font-size: 13px;
+    color: #2a5885;
+}
+/*.list li:nth-child(3) {*/
+/*    padding: 0;*/
+/*}*/
+.name {
+    font-size: 19px;
+    font-weight: 500;
+    margin-top: -6px;
+}
+.status {
+    /*color: #939393;*/
+    color: #000000;
+    font-size: 14px;
+    padding-top: 4px;
+}
+.item span {
+    display: inline-block;
+    color: #818c99;
+    width: 150px;
+}

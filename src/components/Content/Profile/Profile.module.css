@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+}
+.leftColumn {
+    width: 29%;
+    margin-right: 15px;
+}
+.rightColumn {
+    width: 71%;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+}

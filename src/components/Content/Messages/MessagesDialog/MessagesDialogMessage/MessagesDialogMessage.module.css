@@ -1,0 +1,29 @@
+.item {
+    display: grid;
+    grid-template-columns: 1fr 10fr 2fr;
+    width: 100%;
+    padding: 20px 0 0;
+}
+
+.avatar {
+    display: block;
+    width: 35px;
+    height: 35px;
+    background-color: #c2c2c2;
+    border-radius: 100%;
+    margin: 3px 10px 0 0;
+}
+.name {
+    font-size: 14px;
+    color: #2a5885;
+    font-weight: 500;
+}
+.time {
+    font-size: 11px;
+    color: #b0afaf;
+    text-align: right;
+}
+.message {
+    margin-top: 0px;
+    font-size: 13px;
+}

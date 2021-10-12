@@ -1,0 +1,40 @@
+.wrap {
+    padding: 10px 20px;
+    background-color: #567da9;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+.title {
+    color: #ffff;
+    font-size: 24px;
+    line-height: 1.5;
+}
+.btn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 0;
+}
+.logout {
+    color: #ffff;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: transparent;
+}
+.logout:hover {
+    text-decoration: underline;
+}
