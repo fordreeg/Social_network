@@ -6,7 +6,7 @@ import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
 
 const Profile = (props) => {
-
+    console.log(props)
     return (
         <section className={s.wrapper}>
             <div className={s.leftColumn}>
@@ -28,9 +28,8 @@ const Profile = (props) => {
                     <ProfilePostNew
                         avatar={props.profileData.avatar}
                         name={props.profileData.name}
-                        addPost={props.addPost}
                         newPostText={props.newPostText}
-                        updateNewPostText={props.updateNewPostText}
+                        dispatch={props.dispatch}
                     />
                     <ProfilePosts
                         postData={props.postData}

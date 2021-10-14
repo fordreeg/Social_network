@@ -1,11 +1,11 @@
 import s from "./ProfilePostNew.module.css";
 import React from "react";
+import {addPostACreator, updateNewPostTextACreator} from "../../../../../Redux/state";
 
 const ProfilePostNew = (props) => {
-    
     let textarea = React.createRef();
     
-    const addPost = (e) => {
+    const onAddPost = (e) => {
         e.preventDefault();
         let date = new Date(),
             hours = date.getHours(),
@@ -14,15 +14,15 @@ const ProfilePostNew = (props) => {
             month = date.getMonth() + 1,
             year = String(date.getFullYear()).slice(2);
         let datePost = `${hours}:${minutes} ${day}.${month}.${year}`;
-        props.addPost(props.name, props.avatar, datePost);
+        props.dispatch(addPostACreator(props.name, props.avatar, datePost));
     };
     
-    const updateNewPostText = () => {
-        props.updateNewPostText(textarea.current.value);
+    const onUpdateNewPostText = () => {
+        props.dispatch(updateNewPostTextACreator(textarea.current.value));
     };
     
     return (
-        <form className={s.form} onSubmit={addPost}>
+        <form className={s.form} onSubmit={onAddPost}>
             <img className={s.img}
                  src={props.avatar} alt='avatar'/>
             <div className={s.text}>
@@ -32,7 +32,7 @@ const ProfilePostNew = (props) => {
                           name="textarea"
                           placeholder="What's new?"
                           value={props.newPostText}
-                          onChange={updateNewPostText}
+                          onChange={onUpdateNewPostText}
                 />
                 <button className={s.btn} type='submit'>Publish</button>
             </div>

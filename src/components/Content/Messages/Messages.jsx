@@ -14,8 +14,7 @@ const Messages = (props) => {
                 name={props.messDialog.name}
                 messages={props.messDialog.messages}
                 newMessageText={props.newMessageText}
-                updateNewMessageText={props.updateNewMessageText}
-                sendNewMessage={props.sendNewMessage}
+                dispatch={props.dispatch}
             />
         </div>
     )

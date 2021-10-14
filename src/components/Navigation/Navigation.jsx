@@ -27,7 +27,7 @@ const Navigation = () => {
                     url='/News'
                 />
                 <NavigationItem
-                    imgSrc='https://cdn-icons.flaticon.com/png/512/461/premium/461146.png?token=exp=1633696266~hmac=b305c917d538958482a2ec6b6cb8c18a'
+                    imgSrc='https://cdn-icons-png.flaticon.com/512/876/876817.png'
                     name='Music'
                     url='/Music'
                 />

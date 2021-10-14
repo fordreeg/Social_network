@@ -1,6 +1,7 @@
 import s from "./MessagesDialog.module.css";
 import MessagesDialogMessage from "./MessagesDialogMessage/MessagesDialogMessage";
 import React from "react";
+import {sendNewMessageACreator, updateNewMessageTextACreator} from "../../../../Redux/state";
 
 const MessagesDialog = (props) => {
     
@@ -20,11 +21,11 @@ const MessagesDialog = (props) => {
             )
         });
     
-    const updateNewMessageText = () => {
-        props.updateNewMessageText(textarea.current.value)
+    const onUpdateNewMessageText = () => {
+        props.dispatch(updateNewMessageTextACreator(textarea.current.value))
     };
     
-    const sendNewMessage = (e) => {
+    const onSendNewMessage = (e) => {
         e.preventDefault();
         let date = new Date(),
             hours = date.getHours(),
@@ -33,7 +34,7 @@ const MessagesDialog = (props) => {
             month = date.getMonth() + 1,
             year = String(date.getFullYear()).slice(2);
         let datePost = `${hours}:${minutes} ${day}.${month}.${year}`;
-        props.sendNewMessage(datePost)
+        props.dispatch(sendNewMessageACreator(datePost))
     };
 
     return (
@@ -43,7 +44,7 @@ const MessagesDialog = (props) => {
             <ul className={s.dialog}>
                 {messagesDialogMessage}
             </ul>
-            <form className={s.form} onSubmit={sendNewMessage}>
+            <form className={s.form} onSubmit={onSendNewMessage}>
                 <div>
                     1
                 </div>
@@ -54,7 +55,7 @@ const MessagesDialog = (props) => {
                         name="textarea"
                         placeholder="Write a message..."
                         value={props.newMessageText}
-                        onChange={updateNewMessageText}
+                        onChange={onUpdateNewMessageText}
                         ref={textarea}
                     />
                 </div>
