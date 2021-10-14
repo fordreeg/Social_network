@@ -1,6 +1,6 @@
 import s from "./ProfilePostNew.module.css";
 import React from "react";
-import {addPostACreator, updateNewPostTextACreator} from "../../../../../Redux/state";
+import {addPostACreator, updateNewPostTextACreator} from "../../../../../Redux/profileReducer";
 
 const ProfilePostNew = (props) => {
     let textarea = React.createRef();

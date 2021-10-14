@@ -1,10 +1,10 @@
 import s from "./MessagesDialog.module.css";
 import MessagesDialogMessage from "./MessagesDialogMessage/MessagesDialogMessage";
 import React from "react";
-import {sendNewMessageACreator, updateNewMessageTextACreator} from "../../../../Redux/state";
+import {sendNewMessageACreator, updateNewMessageTextACreator} from "../../../../Redux/messagesReducer";
 
 const MessagesDialog = (props) => {
-    
+    console.log(props)
     let textarea = React.createRef();
     
     const messagesDialogMessage = props.messages
