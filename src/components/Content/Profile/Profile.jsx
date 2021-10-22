@@ -1,12 +1,11 @@
 import s from './Profile.module.css'
 import ProfileAvatar from "./ProfileAvatar/ProfileAvatar";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import ProfilePostNew from "./ProfilePosts/ProfilePostNew/ProfilePostNew";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
+import ProfilePostNewContainer from "./ProfilePosts/ProfilePostNew/ProfilePostNewContainer";
 
 const Profile = (props) => {
-    console.log(props)
     return (
         <section className={s.wrapper}>
             <div className={s.leftColumn}>
@@ -25,11 +24,8 @@ const Profile = (props) => {
                              website={props.profileData.website}
                 />
                 <div className={s.posts}>
-                    <ProfilePostNew
-                        avatar={props.profileData.avatar}
-                        name={props.profileData.name}
-                        newPostText={props.newPostText}
-                        dispatch={props.dispatch}
+                    <ProfilePostNewContainer
+                        store={props.store}
                     />
                     <ProfilePosts
                         postData={props.postData}

@@ -14,6 +14,7 @@ const App = (props) => {
                       profile={props.state.profilePage}
                       messages={props.state.messagesPage}
                       dispatch={props.dispatch}
+                      store={props.store}
                   />
               </div>
           </div>

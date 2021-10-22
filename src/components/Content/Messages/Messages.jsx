@@ -1,6 +1,6 @@
 import s from "./Messages.module.css";
 import MessagesDialogs from "./MessagesDialogs/MessagesDialogs";
-import MessagesDialog from "./MessagesDialog/MessagesDialog";
+import MessagesDialogContainer from "./MessagesDialog/MessagesDialogContainer";
 
 const Messages = (props) => {
     
@@ -9,12 +9,9 @@ const Messages = (props) => {
             <MessagesDialogs
                 messDialogs={props.messDialogs}
             />
-            <MessagesDialog
-                id={props.messDialog.id}
-                name={props.messDialog.name}
-                messages={props.messDialog.messages}
+            <MessagesDialogContainer
                 newMessageText={props.newMessageText}
-                dispatch={props.dispatch}
+                store={props.store}
             />
         </div>
     )

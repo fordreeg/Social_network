@@ -12,7 +12,7 @@ const Content = (props) => {
                     postData={props.profile.postData}
                     profileFriends={props.profile.profileFriends}
                     newPostText={props.profile.newPostText}
-                    dispatch={props.dispatch}
+                    store={props.store}
                 />
             </Route>
             <Route exact path='/messages'>
@@ -20,7 +20,7 @@ const Content = (props) => {
                     messDialogs={props.messages.messDialogs}
                     messDialog={props.messages.messDialog}
                     newMessageText={props.messages.newMessageText}
-                    dispatch={props.dispatch}
+                    store={props.store}
                 />
             </Route>
         </div>
