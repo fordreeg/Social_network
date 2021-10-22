@@ -10,7 +10,6 @@ const Messages = (props) => {
                 messDialogs={props.messDialogs}
             />
             <MessagesDialogContainer
-                newMessageText={props.newMessageText}
                 store={props.store}
             />
         </div>

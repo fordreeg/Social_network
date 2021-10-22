@@ -18,8 +18,6 @@ const Content = (props) => {
             <Route exact path='/messages'>
                 <Messages
                     messDialogs={props.messages.messDialogs}
-                    messDialog={props.messages.messDialog}
-                    newMessageText={props.messages.newMessageText}
                     store={props.store}
                 />
             </Route>

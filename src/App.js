@@ -11,9 +11,8 @@ const App = (props) => {
               <div className="app__wrapper">
                   <Navigation/>
                   <Content
-                      profile={props.state.profilePage}
-                      messages={props.state.messagesPage}
-                      dispatch={props.dispatch}
+                      profile={props.store.getState().profilePage}
+                      messages={props.store.getState().messagesPage}
                       store={props.store}
                   />
               </div>
