@@ -3,11 +3,11 @@ import React from "react";
 
 const ProfilePostNew = (props) => {
     const onAddPost = (e) => {
-        props.addPost(e)
+        props.addPost(e, props.name, props.avatar)
     };
     
     let onUpdateNewPostText = (e) => {
-        props.onUpdateNewPostText(e.target.value);
+        props.updateNewPostText(e.target.value);
     };
     
     return (
