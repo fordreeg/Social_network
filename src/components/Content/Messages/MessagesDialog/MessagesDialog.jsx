@@ -1,4 +1,4 @@
-import s from "./MessagesDialog.module.css";
+import style from "./MessagesDialog.module.css";
 import MessagesDialogMessage from "./MessagesDialogMessage/MessagesDialogMessage";
 import React from "react";
 
@@ -26,19 +26,19 @@ const MessagesDialog = (props) => {
     };
 
     return (
-        <div className={s.wrapper}>
-            <div className={s.title}><a href={'/' + props.id}>{props.name}</a></div>
-            <div className={s.divider}/>
-            <ul className={s.dialog}>
+        <div className={style.wrapper}>
+            <div className={style.title}><a href={'/' + props.id}>{props.name}</a></div>
+            <div className={style.divider}/>
+            <ul className={style.dialog}>
                 {messagesDialogMessage}
             </ul>
-            <form className={s.form} onSubmit={onSendNewMessage}>
+            <form className={style.form} onSubmit={onSendNewMessage}>
                 <div>
                     1
                 </div>
                 <div>
                     <textarea
-                        className={s.textarea}
+                        className={style.textarea}
                         required
                         name="textarea"
                         placeholder="Write a message..."
@@ -47,7 +47,7 @@ const MessagesDialog = (props) => {
                     />
                 </div>
                 <div>
-                    <button className={s.btn} type='submit'/>
+                    <button className={style.btn} type='submit'/>
                 </div>
             </form>
         </div>

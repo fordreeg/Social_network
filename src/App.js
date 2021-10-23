@@ -13,7 +13,6 @@ const App = (props) => {
                   <Content
                       profile={props.store.getState().profilePage}
                       messages={props.store.getState().messagesPage}
-                      store={props.store}
                   />
               </div>
           </div>

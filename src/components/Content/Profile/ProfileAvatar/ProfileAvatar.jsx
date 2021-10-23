@@ -1,12 +1,12 @@
-import s from "./ProfileAvatar.module.css";
+import style from "./ProfileAvatar.module.css";
 
 const ProfileAvatar = (props) => {
     
     return (
-        <div className={s.wrapper}>
-            <img className={s.img}
+        <div className={style.wrapper}>
+            <img className={style.img}
                  src={props.avatar} alt='avatar'/>
-            <button className={s.btn}>Edit</button>
+            <button className={style.btn}>Edit</button>
         </div>
     )
 }

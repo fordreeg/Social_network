@@ -1,4 +1,4 @@
-import s from "./MessagesDialogs.module.css";
+import style from "./MessagesDialogs.module.css";
 import MessagesDialogsItem from "./MessagesDialogsItem";
 
 const MessagesDialogs = (props) => {
@@ -15,8 +15,8 @@ const MessagesDialogs = (props) => {
         })
     
     return (
-        <ul className={s.list}>
-            <li className={s.title}><h2>My messages</h2></li>
+        <ul className={style.list}>
+            <li className={style.title}><h2>My messages</h2></li>
             {messDialogs}
         </ul>
     )

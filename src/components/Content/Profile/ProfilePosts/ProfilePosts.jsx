@@ -1,4 +1,4 @@
-import s from "./ProfilePosts.module.css";
+import style from "./ProfilePosts.module.css";
 import ProfilePostsItem from "./ProfilePostsItem/ProfilePostsItem";
 import React from "react";
 
@@ -26,22 +26,22 @@ const ProfilePosts = (props) => {
     };
     return (
         <div>
-            <form className={s.new__form} onSubmit={onAddPost}>
-                <img className={s.new__img}
+            <form className={style.new__form} onSubmit={onAddPost}>
+                <img className={style.new__img}
                      src={props.avatar} alt='avatar'/>
-                <div className={s.new__text}>
-                <textarea className={s.new__textarea}
+                <div className={style.new__text}>
+                <textarea className={style.new__textarea}
                           required
                           name="textarea"
                           placeholder="What's new?"
                           value={props.newPostText}
                           onChange={onUpdateNewPostText}
                 />
-                    <button className={s.new__btn} type='submit'>Publish</button>
+                    <button className={style.new__btn} type='submit'>Publish</button>
                 </div>
             </form>
-            <div className={s.wrapper}>
-                <h2 className={s.title}>My posts</h2>
+            <div className={style.wrapper}>
+                <h2 className={style.title}>My posts</h2>
                 {profilePosts}
             </div>
         </div>

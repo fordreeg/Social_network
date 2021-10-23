@@ -1,0 +1,52 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #ffff;
+    border-radius: 2px;
+    box-shadow: 0 0 2px 0 #bab9b9;
+}
+.head {
+    background-color: #fafbfc;
+    padding: 15px;
+    border-bottom: 1px solid #dce1e6;
+}
+.title {
+    font-size: 17px;
+    font-weight: 500;
+}
+.form {
+    display: flex;
+    border-bottom: 1px solid #dce1e6;
+}
+.input, .btn {
+    border: none;
+    font-size: 14px;
+    padding: 8px 15px;
+}
+.input, .btn:focus {
+    outline: none;
+}
+.input {
+    width: 90%;
+}
+.btn {
+    width: 10%;
+    cursor: pointer;
+    background-color: #5181b8;
+    color: #ffff;
+    font-weight: 400;
+    border: none;
+    transition: opacity .3s;
+}
+.btn:hover {
+    opacity: 0.88;
+}
+.userList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+}
+
+

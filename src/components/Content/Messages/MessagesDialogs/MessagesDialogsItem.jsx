@@ -1,16 +1,16 @@
-import s from "./MessagesDialogs.module.css";
+import style from "./MessagesDialogs.module.css";
 import {NavLink} from "react-router-dom";
 
 const MessagesDialogsItem = (props) => {
 
     return (
-        <li className={s.item}>
-            <NavLink to={'/Messages/' + props.id} className={s.link}>
+        <li className={style.item}>
+            <NavLink to={'/Messages/' + props.id} className={style.link}>
                 <div>
-                    <img src={props.avatar} alt="avatar" className={s.avatar}/>
-                    <div className={s.name}>{props.name}</div>
+                    <img src={props.avatar} alt="avatar" className={style.avatar}/>
+                    <div className={style.name}>{props.name}</div>
                 </div>
-                <span className={s.numMessages}>{props.count}</span>
+                <span className={style.numMessages}>{props.count}</span>
             </NavLink>
         </li>
     )

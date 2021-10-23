@@ -1,4 +1,4 @@
-import s from './ProfileFriends.module.css'
+import style from './ProfileFriends.module.css'
 import ProfileFriendsItem from "./ProfileFriendsItem";
 
 const ProfileFriends = (props) => {
@@ -13,12 +13,12 @@ const ProfileFriends = (props) => {
             )
         });
     return (
-        <div className={s.wrapper}>
-            <a href="#" className={s.head}>
-                <div className={s.head__title}>Friends</div>
-                <div className={s.head__count}>{props.count}</div>
+        <div className={style.wrapper}>
+            <a href="#" className={style.head}>
+                <div className={style.head__title}>Friends</div>
+                <div className={style.head__count}>{props.count}</div>
             </a>
-            <div className={s.body}>
+            <div className={style.body}>
                 {profileFriends}
             </div>
         </div>

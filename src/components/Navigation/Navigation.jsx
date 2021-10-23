@@ -1,11 +1,11 @@
-import s from './Navigation.module.css';
+import style from './Navigation.module.css';
 import NavigationItem from "./NavigationItem";
 
 const Navigation = () => {
     
     return (
         <nav>
-            <ul className={s.list}>
+            <ul className={style.list}>
                 <NavigationItem
                     imgSrc='https://cdn-icons-png.flaticon.com/512/1077/1077114.png'
                     name='Profile'

@@ -1,23 +1,23 @@
-import s from "./ProfilePostsItem.module.css";
+import style from "./ProfilePostsItem.module.css";
 
 const ProfilePostsItem = (props) => {
     
     return (
-        <div className={s.item}>
-            <img className={s.img}
+        <div className={style.item}>
+            <img className={style.img}
                  src={props.avatar} alt='avatar'/>
-            <div className={s.info}>
-                <span className={s.name}>{props.name}</span>
-                <span className={s.time}>{props.time}</span>
-                <span className={s.text}>{props.text}</span>
+            <div className={style.info}>
+                <span className={style.name}>{props.name}</span>
+                <span className={style.time}>{props.time}</span>
+                <span className={style.text}>{props.text}</span>
             </div>
-            <div className={s.likes}>
-                <div className={s.likes__count}>
+            <div className={style.likes}>
+                <div className={style.likes__count}>
                     {props.likes}
                 </div>
-                <div className={s.likes__icon}>
+                <div className={style.likes__icon}>
                     <svg version="1.1"
-                         className={s.svg}
+                         className={style.svg}
                          x="0px"
                          y="0px"
                          viewBox="0 0 51.997 51.997"
