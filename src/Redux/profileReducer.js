@@ -4,16 +4,16 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const initialState = {
     profileData: {
         avatar: 'https://klike.net/uploads/posts/2019-03/1551512888_2.jpg',
-            name: 'Vladyslav Herasymenko',
-            status: 'lol,kek, cheburek))',
-            date: '09.04.1997',
-            city: 'Kharkov',
-            education: 'NURE',
-            website: 'instagram.com',
-            friends: '4'
+        name: 'Vladyslav Herasymenko',
+        status: 'lol,kek, cheburek))',
+        date: '09.04.1997',
+        city: 'Kharkov',
+        education: 'NURE',
+        website: 'instagram.com',
+        friends: '4'
     },
     newPostText: '',
-        postData: [
+    postData: [
         {
             id: 1,
             name: 'Vladyslav Herasymenko',
@@ -23,7 +23,7 @@ const initialState = {
             likes: '23',
         }
     ],
-        profileFriends: [
+    profileFriends: [
         {avatar: '#', name: 'Chris', id: '3'},
         {avatar: '#', name: 'Kevin', id: '4'},
         {avatar: '#', name: 'Clark', id: '5'},
@@ -33,7 +33,7 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost = {
                 id: +1,
                 name: action.name,
@@ -42,12 +42,18 @@ const profileReducer = (state = initialState, action) => {
                 text: state.newPostText,
                 likes: '',
             }
-            state.postData.push(newPost);
-            state.newPostText = '';
-            return state;
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newPostText;
-            return state;
+            
+            let stateCopy = {...state};
+            stateCopy.postData = [ ...state.postData];
+            stateCopy.postData.push(newPost);
+            stateCopy.newPostText = '';
+            return stateCopy;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = { ...state};
+            stateCopy.newPostText = action.newPostText;
+            return stateCopy;
+        }
         default:
             return state;
     }

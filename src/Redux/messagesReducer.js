@@ -33,14 +33,14 @@ const messagesReducer = (state = initialState, action) => {
                 text: state.newMessageText,
             }
             let stateCopy = {...state};
-            stateCopy.messDialog = state.messDialog;
-            stateCopy.messDialog.messages = state.messDialog.messages;
+            stateCopy.messDialog = { ...state.messDialog};
+            stateCopy.messDialog.messages = [ ...state.messDialog.messages];
             stateCopy.messDialog.messages.push(messageItem);
             stateCopy.newMessageText = '';
             return stateCopy;
         }
         case UPDATE_NEW_MESSAGE_TEXT: {
-            let stateCopy = {...state};
+            let stateCopy = { ...state};
             stateCopy.newMessageText = action.newMessageText;
             return stateCopy;
         }

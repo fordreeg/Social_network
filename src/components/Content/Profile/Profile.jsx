@@ -1,9 +1,8 @@
 import s from './Profile.module.css'
 import ProfileAvatar from "./ProfileAvatar/ProfileAvatar";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import ProfilePosts from "./ProfilePosts/ProfilePosts";
+import ProfilePostsContainer from "./ProfilePosts/ProfilePostsContainer";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
-import ProfilePostNewContainer from "./ProfilePosts/ProfilePostNew/ProfilePostNewContainer";
 
 const Profile = (props) => {
     return (
@@ -24,11 +23,8 @@ const Profile = (props) => {
                              website={props.profileData.website}
                 />
                 <div className={s.posts}>
-                    <ProfilePostNewContainer
+                    <ProfilePostsContainer
                         store={props.store}
-                    />
-                    <ProfilePosts
-                        postData={props.postData}
                     />
                 </div>
             </div>

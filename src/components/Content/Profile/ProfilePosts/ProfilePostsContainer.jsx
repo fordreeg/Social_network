@@ -1,13 +1,14 @@
 import React from "react";
-import {addPostACreator, updateNewPostTextACreator} from "../../../../../Redux/profileReducer";
-import ProfilePostNew from "./ProfilePostNew";
+import {addPostACreator, updateNewPostTextACreator} from "../../../../Redux/profileReducer";
 import {connect} from "react-redux";
+import ProfilePosts from "./ProfilePosts";
 
 const mapStateToProps = (state) => {
     return {
         newPostText: state.profilePage.newPostText,
         avatar: state.profilePage.profileData.avatar,
         name: state.profilePage.profileData.name,
+        postData: state.profilePage.postData,
     }
 };
 
@@ -30,6 +31,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-const ProfilePostNewContainer = connect(mapStateToProps, mapDispatchToProps)(ProfilePostNew);
+const ProfilePostsContainer = connect(mapStateToProps, mapDispatchToProps)(ProfilePosts);
 
-export default ProfilePostNewContainer;
+export default ProfilePostsContainer;
