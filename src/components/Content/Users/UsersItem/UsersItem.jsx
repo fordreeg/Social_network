@@ -2,7 +2,6 @@ import style from './UsersItem.module.css';
 import {NavLink} from "react-router-dom";
 
 const UsersItem = (props) => {
-    
     return (
         <div className={style.item} key={props.id}>
             <div>
