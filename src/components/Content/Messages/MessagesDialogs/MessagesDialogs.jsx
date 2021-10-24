@@ -7,6 +7,7 @@ const MessagesDialogs = (props) => {
         .map( elem => {
             return (
                 <MessagesDialogsItem
+                    key={elem.id}
                     id={elem.id}
                     name={elem.name}
                     count={elem.count}

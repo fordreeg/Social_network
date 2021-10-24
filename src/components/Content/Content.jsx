@@ -2,7 +2,7 @@ import Profile from "./Profile/Profile";
 import style from './Content.module.css'
 import Messages from "./Messages/Messages";
 import {Route} from "react-router-dom";
-import Users from "./Users/Users";
+import UsersContainer from "./Users/UsersContainer";
 
 const Content = (props) => {
     return (
@@ -21,7 +21,7 @@ const Content = (props) => {
                 />
             </Route>
             <Route exact path='/users'>
-                <Users/>
+                <UsersContainer/>
             </Route>
         </div>
     )

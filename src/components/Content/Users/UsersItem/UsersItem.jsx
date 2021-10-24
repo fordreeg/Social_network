@@ -1,26 +1,34 @@
-import React from 'react';
 import style from './UsersItem.module.css';
+import {NavLink} from "react-router-dom";
 
-const UsersItem = () => {
+const UsersItem = (props) => {
+    
     return (
-        <div className={style.item}>
+        <div className={style.item} key={props.id}>
             <div>
                 <img
-                    src="https://meragor.com/files/styles//ava_800_800_wm/standoff_3.png"
+                    src={props.photo}
                     alt="avatar"
                     className={style.item__avatar}
                 />
             </div>
             <div>
-                <div className={style.item__name}>Name Surname</div>
-                <div className={style.item__status}>Ya mamkin terrorist</div>
-                <div className={style.item__location}>Country, City</div>
+                <NavLink to={'users' + props.id} className={style.item__name}>{props.name} {props.surname}</NavLink>
+                <div className={style.item__status}>{props.status}</div>
+                <div className={style.item__location}>{props.country}, {props.city}</div>
             </div>
             <div className={style.wrapBtn}>
-                <button className={style.btn}>+ Add Friend</button>
+                {
+                    props.isFriend
+                        ? <button onClick={() => {props.unfriend(props.id)}}
+                                  className={style.btn}>Unfriend</button>
+                        : <button onClick={() => {props.addFriend(props.id)}}
+                                  className={style.btn}>+ Add Friend</button>
+                
+                }
             </div>
         </div>
-    );
+    )
 };
 
 export default UsersItem;

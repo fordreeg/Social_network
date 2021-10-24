@@ -13,6 +13,7 @@ const ProfilePosts = (props) => {
                     time={elem.time}
                     text={elem.text}
                     likes={elem.likes}
+                    key={elem.id}
                 />
             )
         });

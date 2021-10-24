@@ -1,6 +1,5 @@
 import style from "./MessagesDialog.module.css";
 import MessagesDialogMessage from "./MessagesDialogMessage/MessagesDialogMessage";
-import React from "react";
 
 const MessagesDialog = (props) => {
     
@@ -13,6 +12,7 @@ const MessagesDialog = (props) => {
                     text={elem.text}
                     time={elem.time}
                     id={props.id}
+                    key={props.id}
                 />
             )
         });
