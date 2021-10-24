@@ -12,8 +12,8 @@ import axios from "axios";
 //     isFriend: false,
 // }
 class Users extends React.Component {
-    constructor (props) {
-        super(props);
+    
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
                 this.props.setUsers(response.data.items)
@@ -43,7 +43,7 @@ class Users extends React.Component {
                                 name={u.name}
                                 // surname={u.surname}
                                 status={u.status}
-                                photo={u.photo}
+                                photo={u.photos.small}
                                 isFriend={u.isFriend}
                                 // country={u.location.country}
                                 // city={u.location.city}
