@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Users.module.css';
 import UsersItem from "./UsersItem/UsersItem";
-import axios from "axios";
+import * as axios from "axios";
 // {
 //     id: '1',
 //         name: 'Lexa',
@@ -35,7 +35,6 @@ class Users extends React.Component {
                 </form>
                 <div className={style.userList}>
                     {this.props.users.map(u => {
-                        console.log(u)
                         return (
                             <UsersItem
                                 key={u.id}
@@ -43,8 +42,8 @@ class Users extends React.Component {
                                 name={u.name}
                                 // surname={u.surname}
                                 status={u.status}
-                                photo={u.photos.small}
-                                isFriend={u.isFriend}
+                                photos={u.photos.small}
+                                followed={u.followed}
                                 // country={u.location.country}
                                 // city={u.location.city}
                                 addFriend={this.props.addFriend}
