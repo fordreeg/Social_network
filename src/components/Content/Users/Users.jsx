@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Users.module.css';
 import UsersItem from "./UsersItem/UsersItem";
 import loader from "../../../assets/img/loader.svg";
+import Preloader from "../../Common/Preloader/Preloader";
 
 const Users = (props) => {
     let pageCount = Math.ceil(props.totalCount / props.pageSize),
@@ -24,24 +25,26 @@ const Users = (props) => {
                 <button type='submit' className={style.btn}>Search</button>
             </form>
             <div className={style.userList}>
-                {props.isFetching && <img className={style.loader} src={loader} alt="loader"/>}
-                {props.users.map(u => {
-                    return (
-                        <UsersItem
-                            key={u.id}
-                            id={u.id}
-                            name={u.name}
-                            // surname={u.surname}
-                            status={u.status}
-                            photos={u.photos.small}
-                            followed={u.followed}
-                            // country={u.location.country}
-                            // city={u.location.city}
-                            addFriend={props.addFriend}
-                            unfriend={props.unfriend}
-                        />
-                    )
-                })}
+                {props.isFetching
+                    ? <Preloader/>
+                    : props.users.map(u => {
+                            return (
+                                <UsersItem
+                                    key={u.id}
+                                    id={u.id}
+                                    name={u.name}
+                                    // surname={u.surname}
+                                    status={u.status}
+                                    photos={u.photos.small}
+                                    followed={u.followed}
+                                    // country={u.location.country}
+                                    // city={u.location.city}
+                                    addFriend={props.addFriend}
+                                    unfriend={props.unfriend}
+                                />
+                            )
+                        })
+                }
             </div>
             <div className={style.pagination}>
                 {

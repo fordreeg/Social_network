@@ -3,6 +3,7 @@ const UNFRIEND = 'UNFRIEND';
 const SET_USERS = 'SET_USERS';
 const CURRENT_PAGE = 'CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
 const initialState = {
     users: [],
@@ -42,6 +43,8 @@ const usersReducer = (state = initialState, action) => {
             return {...state, currentPage: action.pageNumber}
         case SET_TOTAL_COUNT:
             return {...state, totalCount: action.totalCount}
+        case TOGGLE_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state;
     }
@@ -49,7 +52,8 @@ const usersReducer = (state = initialState, action) => {
 export default usersReducer;
 
 export const addFriendAC = (userId) => ({type: ADD_FRIEND, userId});
-export const unfriendAC = (userId) => ({type: UNFRIEND,userId});
+export const unfriendAC = (userId) => ({type: UNFRIEND, userId});
 export const setUsersAC = (users) => ({type: SET_USERS, users});
 export const setTotalCountAC = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount});
 export const setCurrentPageAC = (pageNumber) => ({type: CURRENT_PAGE, pageNumber});
+export const toggleFetchingAC = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
