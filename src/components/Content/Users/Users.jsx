@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './Users.module.css';
 import UsersItem from "./UsersItem/UsersItem";
-import loader from "../../../assets/img/loader.svg";
 import Preloader from "../../Common/Preloader/Preloader";
 
 const Users = (props) => {

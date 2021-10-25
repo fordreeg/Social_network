@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 import userImg from '../../../../assets/img/user.png'
 
 const UsersItem = (props) => {
-    console.log(props.followed)
     return (
         <div className={style.item} key={props.id}>
             <div>

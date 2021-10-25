@@ -14,22 +14,22 @@ import Users from "./Users";
 class UsersContainer extends React.Component {
     
     componentDidMount() {
-        this.props.toggleFetching(true)
+        this.props.toggleFetchingAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.toggleFetching(false)
-                this.props.setUsers(response.data.items);
-                this.props.setTotalCount(response.data.totalCount);
+                this.props.toggleFetchingAC(false)
+                this.props.setUsersAC(response.data.items);
+                this.props.setTotalCountAC(response.data.totalCount);
             });
     }
     
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.toggleFetching(true)
+        this.props.setCurrentPageAC(pageNumber);
+        this.props.toggleFetchingAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.toggleFetching(false)
-                this.props.setUsers(response.data.items);
+                this.props.toggleFetchingAC(false)
+                this.props.setUsersAC(response.data.items);
             });
     }
     
@@ -42,8 +42,8 @@ class UsersContainer extends React.Component {
                 currentPage={this.props.currentPage}
                 users={this.props.users}
                 onPageChanged={this.onPageChanged}
-                addFriend={this.props.addFriend}
-                unfriend={this.props.unfriend}
+                addFriend={this.props.addFriendAC}
+                unfriend={this.props.unfriendAC}
                 isFetching={this.props.isFetching}
             />
         )
@@ -60,27 +60,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addFriend: (userId) => {
-            dispatch(addFriendAC(userId))
-        },
-        unfriend: (userId) => {
-            dispatch(unfriendAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountAC(totalCount))
-        },
-        toggleFetching: (isFetching) => {
-            dispatch(toggleFetchingAC(isFetching))
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+    addFriendAC, unfriendAC, setUsersAC, setCurrentPageAC, setTotalCountAC, toggleFetchingAC
+})(UsersContainer);
