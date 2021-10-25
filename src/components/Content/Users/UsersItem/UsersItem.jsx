@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 import userImg from '../../../../assets/img/user.png'
 
 const UsersItem = (props) => {
-    console.log(props)
     return (
         <div className={style.item} key={props.id}>
             <div>
@@ -15,7 +14,7 @@ const UsersItem = (props) => {
             </div>
             <div>
                 <NavLink to={'users/' + props.id} className={style.item__name}>{props.name} {props.surname}</NavLink>
-                <div className={style.item__status}>{props.status ? props.status : 'null'}</div>
+                <div className={style.item__status}>{props.status ? props.status : 'status will be here'}</div>
                 <div className={style.item__location}>{props.country}, {props.city}</div>
             </div>
             <div className={style.wrapBtn}>

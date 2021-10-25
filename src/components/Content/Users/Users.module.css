@@ -5,6 +5,7 @@
     background-color: #ffff;
     border-radius: 2px;
     box-shadow: 0 0 2px 0 #bab9b9;
+    margin-bottom: 15px;
 }
 .head {
     background-color: #fafbfc;
@@ -47,6 +48,24 @@
     flex-direction: column;
     width: 100%;
     padding: 0 20px;
+}
+.pagination {
+    margin-top: 15px;
+    border: 1px grey solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: hidden;
+}
+.paginationItem {
+    margin: 2px;
+    cursor: pointer;
+}
+.paginationItem:hover {
+    text-decoration: underline;
+}
+.selected {
+    font-weight: 700;
 }
 
 

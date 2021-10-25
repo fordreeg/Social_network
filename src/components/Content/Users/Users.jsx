@@ -2,25 +2,33 @@ import React from 'react';
 import style from './Users.module.css';
 import UsersItem from "./UsersItem/UsersItem";
 import * as axios from "axios";
-// {
-//     id: '1',
-//         name: 'Lexa',
-//     surname: 'Kiborg',
-//     status: 'Ya mamkin terrorist',
-//     photo: 'https://meragor.com/files/styles//ava_800_800_wm/standoff_3.png',
-//     location: {country: 'Russia', city: 'Rostov'},
-//     isFriend: false,
-// }
+
 class Users extends React.Component {
     
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(response.data.items);
+                this.props.setTotalCount(response.data.totalCount);
             });
     }
     
-    render () {
+    onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+            });
+    }
+    
+    render() {
+        let pageCount = Math.ceil(this.props.totalCount / this.props.pageSize),
+            pages = [];
+        
+        for (let i = 1; i <= pageCount; i++) {
+            pages.push(i);
+        }
+        
         return (
             <div className={style.wrapper}>
                 <div className={style.head}>
@@ -51,6 +59,21 @@ class Users extends React.Component {
                             />
                         )
                     })}
+                </div>
+                <div className={style.pagination}>
+                    {
+                        pages.map(p => {
+                            return (
+                                <span
+                                    key={p}
+                                    onClick={() => {this.onPageChanged(p)}}
+                                    className={this.props.currentPage === p ? `${style.paginationItem} ${style.selected}` : style.paginationItem}
+                                >
+                                    {p}
+                                </span>
+                            )
+                        })
+                    }
                 </div>
             </div>
         );
