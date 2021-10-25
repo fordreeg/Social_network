@@ -24,7 +24,6 @@ class UsersContainer extends React.Component {
     
     
     render() {
-        console.log()
         return (
             <Users
                 totalCount={this.props.totalCount}
@@ -34,6 +33,7 @@ class UsersContainer extends React.Component {
                 onPageChanged={this.onPageChanged}
                 addFriend={this.props.addFriend}
                 unfriend={this.props.unfriend}
+                isFetching={this.props.isFetching}
             />
         )
     }
@@ -45,6 +45,7 @@ const mapStateToProps = (state) => {
         totalCount: state.usersPage.totalCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
     }
 };
 

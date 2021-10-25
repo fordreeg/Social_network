@@ -67,5 +67,10 @@
 .selected {
     font-weight: 700;
 }
+.loader {
+    width: 50px;
+    height: 50px;
+    margin: 20px auto 0;
+}
 
 

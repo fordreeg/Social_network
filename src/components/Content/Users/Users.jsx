@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Users.module.css';
 import UsersItem from "./UsersItem/UsersItem";
+import loader from "../../../assets/img/loader.svg";
 
 const Users = (props) => {
     let pageCount = Math.ceil(props.totalCount / props.pageSize),
@@ -23,6 +24,7 @@ const Users = (props) => {
                 <button type='submit' className={style.btn}>Search</button>
             </form>
             <div className={style.userList}>
+                {props.isFetching && <img className={style.loader} src={loader} alt="loader"/>}
                 {props.users.map(u => {
                     return (
                         <UsersItem
@@ -58,6 +60,6 @@ const Users = (props) => {
             </div>
         </div>
     )
-};
+}
 
 export default Users;
