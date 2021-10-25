@@ -48,8 +48,8 @@ const usersReducer = (state = initialState, action) => {
 };
 export default usersReducer;
 
-export const addFriendAC = (userId) => ({type: ADD_FRIEND, userId: userId});
-export const unfriendAC = (userId) => ({type: UNFRIEND, userId: userId});
-export const setUsersAC = (users) => ({type: SET_USERS, users: users});
-export const setTotalCountAC = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount: totalCount});
-export const setCurrentPageAC = (pageNumber) => ({type: CURRENT_PAGE, pageNumber: pageNumber});
+export const addFriendAC = (userId) => ({type: ADD_FRIEND, userId});
+export const unfriendAC = (userId) => ({type: UNFRIEND,userId});
+export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const setTotalCountAC = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount});
+export const setCurrentPageAC = (pageNumber) => ({type: CURRENT_PAGE, pageNumber});
