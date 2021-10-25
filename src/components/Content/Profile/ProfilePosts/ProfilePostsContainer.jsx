@@ -5,8 +5,6 @@ import ProfilePosts from "./ProfilePosts";
 const mapStateToProps = (state) => {
     return {
         newPostText: state.profilePage.newPostText,
-        avatar: state.profilePage.profileData.avatar,
-        name: state.profilePage.profileData.name,
         postData: state.profilePage.postData,
     }
 };

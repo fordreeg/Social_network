@@ -19,7 +19,7 @@ const ProfilePosts = (props) => {
         });
     
     const onAddPost = (e) => {
-        props.addPost(e, props.name, props.avatar)
+        props.addPost(e, props.postData.name, props.postData.avatar)
     };
     
     const onUpdateNewPostText = (e) => {
@@ -29,7 +29,7 @@ const ProfilePosts = (props) => {
         <div>
             <form className={style.new__form} onSubmit={onAddPost}>
                 <img className={style.new__img}
-                     src={props.avatar} alt='avatar'/>
+                     src={props.postData.avatar} alt='avatar'/>
                 <div className={style.new__text}>
                 <textarea className={style.new__textarea}
                           required

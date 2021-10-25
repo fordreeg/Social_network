@@ -8,20 +8,15 @@ const Profile = (props) => {
     return (
         <section className={style.wrapper}>
             <div className={style.leftColumn}>
-                <ProfileAvatar avatar={props.profileData.avatar}/>
+                <ProfileAvatar
+                    profile={props.profile}
+                />
                 <ProfileFriends
-                    count={props.profileData.friends}
                     friends={props.profileFriends}
                 />
             </div>
             <div className={style.rightColumn}>
-                <ProfileInfo name={props.profileData.name}
-                             status={props.profileData.status}
-                             date={props.profileData.date}
-                             city={props.profileData.city}
-                             education={props.profileData.education}
-                             website={props.profileData.website}
-                />
+                <ProfileInfo profile={props.profile}/>
                 <div className={style.posts}>
                     <ProfilePostsContainer/>
                 </div>

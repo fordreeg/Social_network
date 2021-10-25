@@ -18,7 +18,7 @@ const ProfileFriends = (props) => {
         <div className={style.wrapper}>
             <NavLink to={'/'+props.id} className={style.head}>
                 <div className={style.head__title}>Friends</div>
-                <div className={style.head__count}>{props.count}</div>
+                <div className={style.head__count}>props.count</div>
             </NavLink>
             <div className={style.body}>
                 {profileFriends}

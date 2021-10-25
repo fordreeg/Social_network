@@ -1,17 +1,9 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const SET_PROFILE = 'SET_PROFILE';
 
 const initialState = {
-    profileData: {
-        avatar: 'https://klike.net/uploads/posts/2019-03/1551512888_2.jpg',
-        name: 'Vladyslav Herasymenko',
-        status: 'lol,kek, cheburek))',
-        date: '09.04.1997',
-        city: 'Kharkov',
-        education: 'NURE',
-        website: 'instagram.com',
-        friends: '4'
-    },
+    profile: null,
     newPostText: '',
     postData: [
         {
@@ -52,6 +44,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.newPostText,
             };
+        case SET_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            };
         default:
             return state;
     }
@@ -70,5 +67,11 @@ export const updateNewPostTextACreator = (newPostText) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newPostText: newPostText,
+    }
+};
+export const setProfileAC = (profile) => {
+    return {
+        type: SET_PROFILE,
+        profile,
     }
 };
