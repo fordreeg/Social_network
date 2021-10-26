@@ -16,15 +16,15 @@ const UsersItem = (props) => {
                 </NavLink>
             </div>
             <div>
-                <NavLink to={'/profile/' + props.id} className={style.item__name}>{props.name} {props.surname}</NavLink>
+                <NavLink to={'/profile/' + props.id} className={style.item__name}>{props.name} props.surname</NavLink>
                 <div className={style.item__status}>{props.status ? props.status : 'status will be here'}</div>
-                <div className={style.item__location}>{props.country}, {props.city}</div>
+                <div className={style.item__location}>props.country, props.city</div>
             </div>
             <div className={style.wrapBtn}>
                 {
                     props.followed
-                        ? <button onClick={() => {props.onAddFriend(props.id)}}
-                                  className={style.btn}>+ Add Friend</button>
+                        ? <button onClick={() => {props.onUnFriend(props.id)}}
+                                  className={style.btn}>Unfriend</button>
                         : <button onClick={() => {props.onAddFriend(props.id)}}
                                   className={style.btn}>+ Add Friend</button>
                 }

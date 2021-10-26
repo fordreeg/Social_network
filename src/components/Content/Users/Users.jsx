@@ -10,7 +10,6 @@ const Users = (props) => {
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i);
     }
-    
     return (
         <div className={style.wrapper}>
             <div className={style.head}>

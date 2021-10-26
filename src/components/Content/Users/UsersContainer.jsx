@@ -8,61 +8,45 @@ import {
     unfriendAC
 } from "../../../Redux/usersReducer";
 import React from "react";
-import * as axios from "axios";
 import Users from "./Users";
+import UsersApi from "../../../Api/UsersApi";
 
 class UsersContainer extends React.Component {
     
     componentDidMount() {
         this.props.toggleFetchingAC(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
+        UsersApi.getUsers(this.props.currentPage, this.props.pageSize)
             .then(response => {
                 this.props.toggleFetchingAC(false)
-                this.props.setUsersAC(response.data.items);
-                this.props.setTotalCountAC(response.data.totalCount);
+                this.props.setUsersAC(response.items);
+                this.props.setTotalCountAC(response.totalCount);
             });
     }
     
-    onPageChanged = (pageNumber) => {
-        this.props.setCurrentPageAC(pageNumber);
+    onPageChanged = (currentPage) => {
+        this.props.setCurrentPageAC(currentPage);
         this.props.toggleFetchingAC(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
+        UsersApi.getUsers(currentPage, this.props.pageSize)
             .then(response => {
                 this.props.toggleFetchingAC(false)
-                this.props.setUsersAC(response.data.items);
+                this.props.setUsersAC(response.items);
             });
     }
     
     onAddFriend = (userId) => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'd7025a09-8921-4f3f-bdbe-d429752c93dc',
-            }
-        })
+        UsersApi.addFriend(userId)
             .then(response => {
-                console.log(response.data)
-                if(response.data.resultCode === 0) {
+                if(response.resultCode === 0) {
                     this.props.addFriendAC(userId)
                 }
             });
     }
     
     onUnFriend = (userId) => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'd7025a09-8921-4f3f-bdbe-d429752c93dc',
-            }
-        })
+        UsersApi.addFriend(userId)
             .then(response => {
-                console.log(response.data)
-                if(response.data.resultCode === 0) {
-                    this.props.unfriend(userId)
+                if(response.resultCode === 0) {
+                    this.props.unfriendAC(userId)
                 }
             });
     }
