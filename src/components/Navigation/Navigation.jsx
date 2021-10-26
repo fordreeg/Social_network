@@ -9,27 +9,27 @@ const Navigation = () => {
                 <NavigationItem
                     imgSrc='https://cdn-icons-png.flaticon.com/512/1077/1077114.png'
                     name='Profile'
-                    url='/Profile'
+                    url='/profile'
                 />
                 <NavigationItem
                     imgSrc='https://cdn-icons-png.flaticon.com/512/1077/1077114.png'
                     name='Friends'
-                    url='/Friends'
+                    url='/friends'
                 />
                 <NavigationItem
                     imgSrc='https://cdn-icons-png.flaticon.com/512/561/561188.png'
                     name='Messages'
-                    url='/Messages'
+                    url='/messages'
                 />
                 <NavigationItem
                     imgSrc='https://cdn-icons-png.flaticon.com/512/876/876817.png'
                     name='News'
-                    url='/News'
+                    url='/news'
                 />
                 <NavigationItem
                     imgSrc='https://cdn-icons-png.flaticon.com/512/876/876817.png'
                     name='Music'
-                    url='/Music'
+                    url='/music'
                 />
                 <li className='divider'/>
                 <NavigationItem

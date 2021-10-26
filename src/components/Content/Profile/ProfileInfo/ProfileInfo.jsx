@@ -1,10 +1,6 @@
 import style from "./ProfileInfo.module.css";
 
 const ProfileInfo = (props) => {
-    console.log(props)
-    if(!props.profile) {
-        return 'kek'
-    }
     return (
         <div className={style.wrapper}>
             <h2 className={style.name}>{props.profile.fullName}</h2>

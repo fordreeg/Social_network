@@ -1,9 +1,6 @@
 import style from "./ProfileAvatar.module.css";
 
 const ProfileAvatar = (props) => {
-    if(!props.profile) {
-        return 'kek'
-    }
     return (
         <div className={style.wrapper}>
             <img className={style.img}

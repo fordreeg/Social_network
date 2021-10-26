@@ -7,7 +7,7 @@ import UsersContainer from "./Users/UsersContainer";
 const Content = (props) => {
     return (
         <div className={style.wrapper}>
-            <Route path='/profile'>
+            <Route path='/profile/:userId'>
                 <ProfileContainer
                     profileFriends={props.profile.profileFriends}
                 />

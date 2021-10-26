@@ -25,6 +25,7 @@ const ProfilePosts = (props) => {
     const onUpdateNewPostText = (e) => {
         props.updateNewPostText(e.target.value);
     };
+    console.log(props)
     return (
         <div>
             <form className={style.new__form} onSubmit={onAddPost}>
