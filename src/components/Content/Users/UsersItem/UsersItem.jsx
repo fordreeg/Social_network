@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import userImg from '../../../../assets/img/user.png'
 
 const UsersItem = (props) => {
+    console.log(props)
     return (
         <div className={style.item} key={props.id}>
             <div>
@@ -22,9 +23,9 @@ const UsersItem = (props) => {
             <div className={style.wrapBtn}>
                 {
                     props.followed
-                        ? <button onClick={() => {props.unfriend(props.id)}}
-                                  className={style.btn}>Unfriend</button>
-                        : <button onClick={() => {props.addFriend(props.id)}}
+                        ? <button onClick={() => {props.onAddFriend(props.id)}}
+                                  className={style.btn}>+ Add Friend</button>
+                        : <button onClick={() => {props.onAddFriend(props.id)}}
                                   className={style.btn}>+ Add Friend</button>
                 }
             </div>

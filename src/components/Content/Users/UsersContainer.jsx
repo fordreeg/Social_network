@@ -15,7 +15,9 @@ class UsersContainer extends React.Component {
     
     componentDidMount() {
         this.props.toggleFetchingAC(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true
+        })
             .then(response => {
                 this.props.toggleFetchingAC(false)
                 this.props.setUsersAC(response.data.items);
@@ -26,10 +28,42 @@ class UsersContainer extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPageAC(pageNumber);
         this.props.toggleFetchingAC(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+            withCredentials: true
+        })
             .then(response => {
                 this.props.toggleFetchingAC(false)
                 this.props.setUsersAC(response.data.items);
+            });
+    }
+    
+    onAddFriend = (userId) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'd7025a09-8921-4f3f-bdbe-d429752c93dc',
+            }
+        })
+            .then(response => {
+                console.log(response.data)
+                if(response.data.resultCode === 0) {
+                    this.props.addFriendAC(userId)
+                }
+            });
+    }
+    
+    onUnFriend = (userId) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'd7025a09-8921-4f3f-bdbe-d429752c93dc',
+            }
+        })
+            .then(response => {
+                console.log(response.data)
+                if(response.data.resultCode === 0) {
+                    this.props.unfriend(userId)
+                }
             });
     }
     
@@ -42,8 +76,8 @@ class UsersContainer extends React.Component {
                 currentPage={this.props.currentPage}
                 users={this.props.users}
                 onPageChanged={this.onPageChanged}
-                addFriend={this.props.addFriendAC}
-                unfriend={this.props.unfriendAC}
+                onAddFriend={this.onAddFriend}
+                onUnFriend={this.onUnFriend}
                 isFetching={this.props.isFetching}
             />
         )

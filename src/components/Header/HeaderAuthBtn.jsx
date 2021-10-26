@@ -1,6 +1,5 @@
 import style from './Header.module.css'
 const HeaderAuthBtn = (props) => {
-    console.log(props)
     return (
         <div className={style.btn}>
             {

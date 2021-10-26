@@ -38,8 +38,8 @@ const Users = (props) => {
                                     followed={u.followed}
                                     // country={u.location.country}
                                     // city={u.location.city}
-                                    addFriend={props.addFriend}
-                                    unfriend={props.unfriend}
+                                    onAddFriend={props.onAddFriend}
+                                    onUnFriend={props.onUnFriend}
                                 />
                             )
                         })
