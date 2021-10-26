@@ -8,7 +8,7 @@ const reducers = combineReducers({
     profilePage: profileReducer,
     messagesPage: messagesReducer,
     usersPage: usersReducer,
-    authReducer: authReducer,
+    auth: authReducer,
 });
 
 const store = createStore(reducers);
