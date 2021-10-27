@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 import userImg from '../../../../assets/img/user.png'
 
 const UsersItem = (props) => {
-    console.log(props)
     return (
         <div className={style.item} key={props.id}>
             <div>
@@ -24,8 +23,10 @@ const UsersItem = (props) => {
                 {
                     props.followed
                         ? <button onClick={() => {props.onUnFriend(props.id)}}
+                                  disabled={props.followingInProgress.some(id => id === props.id)}
                                   className={style.btn}>Unfriend</button>
                         : <button onClick={() => {props.onAddFriend(props.id)}}
+                                  disabled={props.followingInProgress.some(id => id === props.id)}
                                   className={style.btn}>+ Add Friend</button>
                 }
             </div>

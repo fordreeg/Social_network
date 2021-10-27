@@ -4,7 +4,7 @@ import {
     setCurrentPageAC,
     setTotalCountAC,
     setUsersAC,
-    toggleFetchingAC,
+    toggleFetchingAC, toggleFollowingProgressAC,
     unfriendAC
 } from "../../../Redux/usersReducer";
 import React from "react";
@@ -34,20 +34,25 @@ class UsersContainer extends React.Component {
     }
     
     onAddFriend = (userId) => {
+        this.props.toggleFollowingProgressAC(true, userId)
         UsersApi.addFriend(userId)
             .then(response => {
-                if(response.resultCode === 0) {
+                if (response.resultCode === 0) {
                     this.props.addFriendAC(userId)
                 }
+                this.props.toggleFollowingProgressAC(false, userId)
             });
     }
     
     onUnFriend = (userId) => {
+        this.props.toggleFollowingProgressAC(true, userId)
         UsersApi.unFriend(userId)
             .then(response => {
-                if(response.resultCode === 0) {
+                if (response.resultCode === 0) {
                     this.props.unfriendAC(userId)
                 }
+                debugger
+                this.props.toggleFollowingProgressAC(false, userId)
             });
     }
     
@@ -63,6 +68,7 @@ class UsersContainer extends React.Component {
                 onAddFriend={this.onAddFriend}
                 onUnFriend={this.onUnFriend}
                 isFetching={this.props.isFetching}
+                followingInProgress={this.props.followingInProgress}
             />
         )
     }
@@ -75,9 +81,10 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 };
 
 export default connect(mapStateToProps, {
-    addFriendAC, unfriendAC, setUsersAC, setCurrentPageAC, setTotalCountAC, toggleFetchingAC
+    addFriendAC, unfriendAC, setUsersAC, setCurrentPageAC, setTotalCountAC, toggleFetchingAC, toggleFollowingProgressAC
 })(UsersContainer);

@@ -20,7 +20,7 @@ const Users = (props) => {
                        placeholder="Type to search..."
                        className={style.input}
                 />
-                <button type='submit' className={style.btn}>Search</button>
+                <button type='submit' className={style.btn} disabled={true}>Search</button>
             </form>
             <div className={style.userList}>
                 {props.isFetching
@@ -39,6 +39,7 @@ const Users = (props) => {
                                     // city={u.location.city}
                                     onAddFriend={props.onAddFriend}
                                     onUnFriend={props.onUnFriend}
+                                    followingInProgress={props.followingInProgress}
                                 />
                             )
                         })
