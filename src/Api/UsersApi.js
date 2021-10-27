@@ -10,7 +10,6 @@ const UsersApi = {
     addFriend: (userId) => {
         return axiosInstance.post(`follow/${userId}`, {})
             .then(response => {
-                console.log(response)
                 return response.data
             })
     },
