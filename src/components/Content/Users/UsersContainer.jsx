@@ -43,7 +43,7 @@ class UsersContainer extends React.Component {
     }
     
     onUnFriend = (userId) => {
-        UsersApi.addFriend(userId)
+        UsersApi.unFriend(userId)
             .then(response => {
                 if(response.resultCode === 0) {
                     this.props.unfriendAC(userId)
