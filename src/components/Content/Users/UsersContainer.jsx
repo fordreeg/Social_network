@@ -1,59 +1,29 @@
 import {connect} from "react-redux";
 import {
-    addFriendAC,
+    addFriend, getUsers,
     setCurrentPageAC,
-    setTotalCountAC,
-    setUsersAC,
-    toggleFetchingAC, toggleFollowingProgressAC,
-    unfriendAC
+    unFriend,
 } from "../../../Redux/usersReducer";
 import React from "react";
 import Users from "./Users";
-import UsersApi from "../../../Api/UsersApi";
 
 class UsersContainer extends React.Component {
     
     componentDidMount() {
-        this.props.toggleFetchingAC(true)
-        UsersApi.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(response => {
-                this.props.toggleFetchingAC(false)
-                this.props.setUsersAC(response.items);
-                this.props.setTotalCountAC(response.totalCount);
-            });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
     
     onPageChanged = (currentPage) => {
         this.props.setCurrentPageAC(currentPage);
-        this.props.toggleFetchingAC(true)
-        UsersApi.getUsers(currentPage, this.props.pageSize)
-            .then(response => {
-                this.props.toggleFetchingAC(false)
-                this.props.setUsersAC(response.items);
-            });
+        this.props.getUsers(currentPage, this.props.pageSize)
     }
     
     onAddFriend = (userId) => {
-        this.props.toggleFollowingProgressAC(true, userId)
-        UsersApi.addFriend(userId)
-            .then(response => {
-                if (response.resultCode === 0) {
-                    this.props.addFriendAC(userId)
-                }
-                this.props.toggleFollowingProgressAC(false, userId)
-            });
+        this.props.addFriend(userId, true)
     }
     
     onUnFriend = (userId) => {
-        this.props.toggleFollowingProgressAC(true, userId)
-        UsersApi.unFriend(userId)
-            .then(response => {
-                if (response.resultCode === 0) {
-                    this.props.unfriendAC(userId)
-                }
-                debugger
-                this.props.toggleFollowingProgressAC(false, userId)
-            });
+        this.props.unFriend(userId, false)
     }
     
     
@@ -86,5 +56,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    addFriendAC, unfriendAC, setUsersAC, setCurrentPageAC, setTotalCountAC, toggleFetchingAC, toggleFollowingProgressAC
+    setCurrentPageAC,
+    getUsers,
+    addFriend, unFriend
 })(UsersContainer);

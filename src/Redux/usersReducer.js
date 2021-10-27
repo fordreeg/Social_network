@@ -1,3 +1,5 @@
+import UsersApi from "../Api/UsersApi";
+
 const ADD_FRIEND = 'ADD_FRIEND';
 const UNFRIEND = 'UNFRIEND';
 const SET_USERS = 'SET_USERS';
@@ -8,7 +10,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const initialState = {
     users: [],
-    totalCount: 19,
+    totalCount: null,
     pageSize: 5,
     currentPage: 1,
     isFetching: true,
@@ -67,3 +69,43 @@ export const setTotalCountAC = (totalCount) => ({type: SET_TOTAL_COUNT, totalCou
 export const setCurrentPageAC = (currentPage) => ({type: CURRENT_PAGE, currentPage});
 export const toggleFetchingAC = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const toggleFollowingProgressAC = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
+
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleFetchingAC(true))
+        UsersApi.getUsers(currentPage, pageSize)
+            .then(response => {
+                dispatch(toggleFetchingAC(false))
+                dispatch(setUsersAC(response.items))
+                dispatch(setTotalCountAC(response.totalCount))
+            });
+    }
+};
+
+export const addFriend = (userId) => {
+    
+    return (dispatch) => {
+        dispatch(toggleFollowingProgressAC(true, userId))
+        UsersApi.addFriend(userId)
+            .then(response => {
+                if (response.resultCode === 0) {
+                    dispatch(addFriendAC(userId))
+                }
+                dispatch(toggleFollowingProgressAC(false, userId))
+            });
+        }
+};
+
+export const unFriend = (userId) => {
+    
+    return (dispatch) => {
+        dispatch(toggleFollowingProgressAC(true, userId))
+        UsersApi.unFriend(userId)
+            .then(response => {
+                if (response.resultCode === 0) {
+                    dispatch(unfriendAC(userId))
+                }
+                dispatch(toggleFollowingProgressAC(false, userId))
+            });
+    }
+}
