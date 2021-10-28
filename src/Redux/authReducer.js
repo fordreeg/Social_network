@@ -1,3 +1,5 @@
+import AuthApi from "../Api/AuthApi";
+
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 const TOGGLE_LOGIN = 'TOGGLE_LOGIN';
 
@@ -26,15 +28,24 @@ const authReducer = (state = initialState, action) => {
 };
 export default authReducer;
 
+export const toggleAuthAC = (isLogin) => ({type: TOGGLE_LOGIN, isLogin});
 export const setAuthDataAC = (userId, email, login) => {
     return {
         type: SET_AUTH_DATA,
         userData: {userId, email, login}
     }
 };
-export const toggleAuthAC = (isLogin) => {
-    return {
-        type: TOGGLE_LOGIN,
-        isLogin,
+
+export const signIn = () => {
+    return (dispatch) => {
+        AuthApi.login().then(response => {
+            if(response.resultCode === 0) {
+                dispatch(toggleAuthAC(true));
+                let {id, login, email} = response.data;
+                dispatch(setAuthDataAC(id, login, email));
+            } else {
+                dispatch(toggleAuthAC(false));
+            }
+        });
     }
-};
+}
