@@ -1,3 +1,5 @@
+import ProfileApi from "../Api/ProfileApi";
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_PROFILE = 'SET_PROFILE';
@@ -63,15 +65,13 @@ export const addPostACreator = (name, avatar, time) => {
         time: time
     }
 };
-export const updateNewPostTextACreator = (newPostText) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newPostText: newPostText,
-    }
-};
-export const setProfileAC = (profile) => {
-    return {
-        type: SET_PROFILE,
-        profile,
+export const updateNewPostTextACreator = (newPostText) => ({type: UPDATE_NEW_POST_TEXT, newPostText: newPostText});
+export const setProfileAC = (profile) => ({type: SET_PROFILE, profile});
+export const getProfile = (userId) => {
+    return (dispatch) => {
+        ProfileApi.getProfileInfo(userId)
+            .then(response => {
+                dispatch(setProfileAC(response));
+            });
     }
 };
