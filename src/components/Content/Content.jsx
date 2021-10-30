@@ -9,9 +9,7 @@ const Content = (props) => {
     return (
         <div className={style.wrapper}>
             <Route path='/profile/:userId?'>
-                <ProfileContainer
-                    profileFriends={props.profile.profileFriends}
-                />
+                <ProfileContainer/>
             </Route>
             <Route exact path='/messages'>
                 <MessagesContainer/>

@@ -56,7 +56,6 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 export default profileReducer;
-
 export const addPostACreator = (name, avatar, time) => {
     return {
         type: ADD_POST,

@@ -10,7 +10,7 @@ ReactDOM.render(
     <Router>
         <Provider store={store}>
             <Route path='/'>
-                <App store={store}/>
+                <App/>
             </Route>
         </Provider>
     </Router>,

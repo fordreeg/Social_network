@@ -10,9 +10,7 @@ const App = (props) => {
           <div className="container">
               <div className="app__wrapper">
                   <Navigation/>
-                  <Content
-                      profile={props.store.getState().profilePage}
-                  />
+                  <Content/>
               </div>
           </div>
       </main>
