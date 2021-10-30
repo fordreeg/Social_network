@@ -3,6 +3,7 @@ import style from './Content.module.css'
 import Messages from "./Messages/Messages";
 import {Route} from "react-router-dom";
 import UsersContainer from "./Users/UsersContainer";
+import Login from "./Login/Login";
 
 const Content = (props) => {
     return (
@@ -19,6 +20,9 @@ const Content = (props) => {
             </Route>
             <Route exact path='/users'>
                 <UsersContainer/>
+            </Route>
+            <Route path='/login'>
+                <Login/>
             </Route>
         </div>
     )
