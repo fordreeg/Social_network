@@ -20,7 +20,7 @@ const Profile = (props) => {
                 />
             </div>
             <div className={style.rightColumn}>
-                <ProfileInfo profile={props.profile}/>
+                <ProfileInfo profile={props.profile} myProfile={props.profilePage.myProfileData}/>
                 <div className={style.posts}>
                     <ProfilePostsContainer/>
                 </div>

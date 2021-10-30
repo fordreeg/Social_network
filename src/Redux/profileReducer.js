@@ -6,6 +6,9 @@ const SET_PROFILE = 'SET_PROFILE';
 
 const initialState = {
     profile: null,
+    myProfileData: {
+        status: 'some status'
+    },
     newPostText: '',
     postData: [
         {

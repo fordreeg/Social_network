@@ -1,10 +1,12 @@
 import style from "./ProfileInfo.module.css";
+import ProfileInfoStatus from "./ProfileInfoStatus";
 
 const ProfileInfo = (props) => {
     return (
         <div className={style.wrapper}>
             <h2 className={style.name}>{props.profile.fullName}</h2>
-            <div className={style.status}>{props.profile.aboutMe}</div>
+            {/*<ProfileInfoStatus status={props.profile.aboutMe}/>*/}
+            <ProfileInfoStatus mystatus={props.myProfile.status}/>
             <ul className={style.list}>
                 <li className='divider'/>
                 <li className={style.item}><span>Date of Birth:</span>props.date</li>
