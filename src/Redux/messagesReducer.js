@@ -26,10 +26,18 @@ const initialState = {
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SEND_NEW_MESSAGE:
+            let date = new Date(),
+                hours = date.getHours(),
+                minutes = date.getMinutes() + 1,
+                day = date.getDate(),
+                month = date.getMonth() + 1,
+                year = String(date.getFullYear()).slice(2),
+                datePost = `${hours}:${minutes} ${day}.${month}.${year}`;
+            
             let messageItem = {
                 name: state.messageInfo.name,
                 avatar: state.messageInfo.avatar,
-                time: action.time,
+                time: datePost,
                 text: state.newMessageText,
             }
             return {
@@ -51,12 +59,7 @@ const messagesReducer = (state = initialState, action) => {
 };
 export default messagesReducer;
 
-export const sendNewMessageACreator = (time) => {
-    return {
-        type: SEND_NEW_MESSAGE,
-        time: time,
-    }
-};
+export const sendNewMessageACreator = () => ({type: SEND_NEW_MESSAGE});
 export const updateNewMessageTextACreator = (newMessageText) => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,

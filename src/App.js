@@ -12,7 +12,6 @@ const App = (props) => {
                   <Navigation/>
                   <Content
                       profile={props.store.getState().profilePage}
-                      messages={props.store.getState().messagesPage}
                   />
               </div>
           </div>
