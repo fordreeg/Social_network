@@ -4,7 +4,7 @@ const ProfileAvatar = (props) => {
     return (
         <div className={style.wrapper}>
             <img className={style.img}
-                 src={props.profile.photos.large} alt='avatar'/>
+                 src={props.photo} alt='avatar'/>
             <button className={style.btn}>Edit</button>
         </div>
     )

@@ -8,7 +8,7 @@ import MessagesContainer from "./Messages/MessagesContainer";
 const Content = (props) => {
     return (
         <div className={style.wrapper}>
-            <Route path='/profile/:userId?'>
+            <Route exact path='/profile/:userId?'>
                 <ProfileContainer/>
             </Route>
             <Route exact path='/messages'>
