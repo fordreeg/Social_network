@@ -3,12 +3,12 @@ import ProfileApi from "../Api/ProfileApi";
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_PROFILE = 'SET_PROFILE';
+const SET_STATUS = 'SET_STATUS';
+const UPDATE_STATUS = 'UPDATE_STATUS';
 
 const initialState = {
     profile: null,
-    myProfileData: {
-        status: 'some status'
-    },
+    status: null,
     newPostText: '',
     postData: [
         {
@@ -54,6 +54,16 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: action.profile
             };
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            };
+        case UPDATE_STATUS:
+            return {
+                ...state,
+                status: action.status
+            };
         default:
             return state;
     }
@@ -69,11 +79,31 @@ export const addPostACreator = (name, avatar, time) => {
 };
 export const updateNewPostTextACreator = (newPostText) => ({type: UPDATE_NEW_POST_TEXT, newPostText: newPostText});
 export const setProfileAC = (profile) => ({type: SET_PROFILE, profile});
+export const setStatusAC = (status) => ({type: SET_STATUS, status});
+export const updateStatusAC = (status) => ({type: SET_STATUS, status});
 export const getProfile = (userId) => {
     return (dispatch) => {
         ProfileApi.getProfileInfo(userId)
             .then(response => {
                 dispatch(setProfileAC(response));
+            });
+    }
+};
+export const getStatus = (userId) => {
+    return (dispatch) => {
+        ProfileApi.getProfileStatus(userId)
+            .then(response => {
+                dispatch(setStatusAC(response));
+            });
+    }
+};
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        ProfileApi.updateProfileStatus(status)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(updateStatusAC(status));
+                }
             });
     }
 };
