@@ -1,8 +1,7 @@
 import style from "./ProfilePosts.module.css";
 import ProfilePostsItem from "./ProfilePostsItem/ProfilePostsItem";
 import React from "react";
-import {Formik} from 'formik';
-import * as yup from 'yup';
+import ProfilePostsForm from "./ProfilePostsForm";
 
 const ProfilePosts = (props) => {
     
@@ -20,29 +19,12 @@ const ProfilePosts = (props) => {
             )
         });
     
-    const onAddPost = (e) => {
-        props.addPost(e, props.postData.name, props.postData.avatar)
-    };
-    
-    const onUpdateNewPostText = (e) => {
-        props.updateNewPostText(e.target.value);
-    };
     return (
         <div>
-            <form className={style.new__form} onSubmit={onAddPost}>
-                <img className={style.new__img}
-                     src={props.postData.avatar} alt='avatar'/>
-                <div className={style.new__text}>
-                <textarea className={style.new__textarea}
-                          required
-                          name="textarea"
-                          placeholder="What's new?"
-                          value={props.newPostText}
-                          onChange={onUpdateNewPostText}
-                />
-                    <button className={style.new__btn} type='submit'>Publish</button>
-                </div>
-            </form>
+            <ProfilePostsForm
+                profile={props.profile}
+                addPost={props.addPost}
+            />
             <div className={style.wrapper}>
                 <h2 className={style.title}>My posts</h2>
                 {profilePosts}

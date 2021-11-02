@@ -1,21 +1,17 @@
-import {addPostACreator, updateNewPostTextACreator} from "../../../../Redux/profileReducer";
+import {addPostACreator} from "../../../../Redux/profileReducer";
 import {connect} from "react-redux";
 import ProfilePosts from "./ProfilePosts";
 
 const mapStateToProps = (state) => {
     return {
-        newPostText: state.profilePage.newPostText,
         postData: state.profilePage.postData,
+        profile: state.profilePage.profile,
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateNewPostText: (text) => {
-            dispatch(updateNewPostTextACreator(text))
-        },
-        addPost: (e, name, avatar) => {
-            e.preventDefault();
+        addPost: (name, avatar, text) => {
             let date = new Date(),
                 hours = date.getHours(),
                 minutes = date.getMinutes(),
@@ -23,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
                 month = date.getMonth() + 1,
                 year = String(date.getFullYear()).slice(2),
                 datePost = `${hours}:${minutes} ${day}.${month}.${year}`;
-            dispatch(addPostACreator(name, avatar, datePost));
+            dispatch(addPostACreator(name, avatar, datePost, text));
         },
     }
 };

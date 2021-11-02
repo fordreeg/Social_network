@@ -12,8 +12,8 @@ const Login = () => {
         password: yup.string()
             .typeError('Должно содержать буквы, цифры и символы')
             .required('Required')
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
+            .min(2, 'Too Short')
+            .max(50, 'Too Long')
     })
     return (
         <div>
@@ -36,14 +36,16 @@ const Login = () => {
                   dirty}) => {
                     return (
                         <form>
-                            <div><input type="text"
+                            <div>
+                                <input type="text"
                                         name={'login'}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.login}
                                         placeholder='Login'
-                            />
-                                {touched.login && errors.login && <p>{errors.login}</p>}</div>
+                                />
+                                {touched.login && errors.login && <p>{errors.login}</p>}
+                            </div>
                             <div>
                                 <input type="password"
                                        name={'password'}
@@ -56,7 +58,7 @@ const Login = () => {
                             </div>
                             <button disabled={!isValid && !dirty}
                                     onClick={handleSubmit}
-                                    type={`submit`}>Sign In</button>
+                                    >Sign In</button>
                         </form>
                     )
                 }}

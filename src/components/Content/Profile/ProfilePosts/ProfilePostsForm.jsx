@@ -1,54 +1,53 @@
+import React from 'react';
 import style from "./ProfilePosts.module.css";
-import ProfilePostsItem from "./ProfilePostsItem/ProfilePostsItem";
-import React from "react";
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
-const ProfilePosts = (props) => {
-    
-    let profilePosts = props.postData
-        .map(elem => {
-            return (
-                <ProfilePostsItem
-                    avatar={elem.avatar}
-                    name={elem.name}
-                    time={elem.time}
-                    text={elem.text}
-                    likes={elem.likes}
-                    key={elem.id}
-                />
-            )
-        });
-    
-    const onAddPost = (e) => {
-        props.addPost(e, props.postData.name, props.postData.avatar)
-    };
-    
-    const onUpdateNewPostText = (e) => {
-        props.updateNewPostText(e.target.value);
+const ProfilePostsForm = (props) => {
+    const validationSchema = yup.object().shape({
+        textarea: yup.string()
+            .required('Required')
+            .min(2, 'Too Short!')
+    });
+    const onAddPost = (values) => {
+        props.addPost(props.profile.fullName, props.profile.photos.large, values.textarea)
     };
     return (
-        <div>
-            <form className={style.new__form} onSubmit={onAddPost}>
-                <img className={style.new__img}
-                     src={props.postData.avatar} alt='avatar'/>
-                <div className={style.new__text}>
-                <textarea className={style.new__textarea}
-                          required
-                          name="textarea"
-                          placeholder="What's new?"
-                          value={props.newPostText}
-                          onChange={onUpdateNewPostText}
-                />
-                    <button className={style.new__btn} type='submit'>Publish</button>
-                </div>
-            </form>
-            <div className={style.wrapper}>
-                <h2 className={style.title}>My posts</h2>
-                {profilePosts}
-            </div>
-        </div>
-    )
-}
+        <Formik
+            initialValues={{
+                textarea: '',
+            }}
+            validateOnBlur
+            onSubmit={onAddPost}
+            validationSchema={validationSchema}
+        >
+            
+            {({values,
+                errors,
+                handleChange,
+                handleSubmit,}) => {
+                return (
+                    <form className={style.new__form} onSubmit={handleSubmit}>
+                        <img className={style.new__img}
+                             src={props.profile.photos.large} alt='avatar'/>
+                        <div className={style.new__text}>
+                            <textarea className={style.new__textarea}
+                                      name="textarea"
+                                      onChange={handleChange}
+                                      placeholder="What's new?"
+                                      value={values.textarea}
+                            />
+                            {errors.textarea && <p>{errors.textarea}</p>}
+                            <button className={style.new__btn}
+                                    type='submit'
+                            >Publish</button>
+                        </div>
+                    </form>
+                )
+            }}
+            
+        </Formik>
+    );
+};
 
-export default ProfilePosts;
+export default ProfilePostsForm;

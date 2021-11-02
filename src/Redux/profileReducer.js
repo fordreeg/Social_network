@@ -1,7 +1,6 @@
 import ProfileApi from "../Api/ProfileApi";
 
 const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const UPDATE_STATUS = 'UPDATE_STATUS';
@@ -9,17 +8,7 @@ const UPDATE_STATUS = 'UPDATE_STATUS';
 const initialState = {
     profile: null,
     status: '',
-    newPostText: '',
-    postData: [
-        {
-            id: 1,
-            name: 'Vladyslav Herasymenko',
-            avatar: 'https://klike.net/uploads/posts/2019-03/1551512888_2.jpg',
-            time: '14:25 02.10.21',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cumque deserunt dicta dolore eos explicabo fuga labore magni molestias numquam obcaecati optio perspiciatis quas quidem quis quod vel, veniam vitae?',
-            likes: '23',
-        }
-    ],
+    postData: [],
     profileFriends: [
         {avatar: '#', name: 'Chris', id: '3'},
         {avatar: '#', name: 'Kevin', id: '4'},
@@ -36,18 +25,13 @@ const profileReducer = (state = initialState, action) => {
                 name: action.name,
                 avatar: action.avatar,
                 time: action.time,
-                text: state.newPostText,
+                text: action.text,
                 likes: '',
             }
             return {
                 ...state,
                 postData: [ ...state.postData, newPost],
                 newPostText: '',
-            };
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newPostText,
             };
         case SET_PROFILE:
             return {
@@ -69,15 +53,15 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 export default profileReducer;
-export const addPostACreator = (name, avatar, time) => {
+export const addPostACreator = (name, avatar, time, text) => {
     return {
         type: ADD_POST,
         name: name,
         avatar: avatar,
-        time: time
+        time: time,
+        text: text,
     }
 };
-export const updateNewPostTextACreator = (newPostText) => ({type: UPDATE_NEW_POST_TEXT, newPostText: newPostText});
 export const setProfileAC = (profile) => ({type: SET_PROFILE, profile});
 export const setStatusAC = (status) => ({type: SET_STATUS, status});
 export const updateStatusAC = (status) => ({type: SET_STATUS, status});
