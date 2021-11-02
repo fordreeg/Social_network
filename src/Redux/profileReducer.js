@@ -31,7 +31,6 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postData: [ ...state.postData, newPost],
-                newPostText: '',
             };
         case SET_PROFILE:
             return {

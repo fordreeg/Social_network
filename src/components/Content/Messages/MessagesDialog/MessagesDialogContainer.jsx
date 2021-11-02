@@ -1,10 +1,9 @@
-import {sendNewMessageACreator, updateNewMessageTextACreator} from "../../../../Redux/messagesReducer";
+import {sendNewMessageACreator} from "../../../../Redux/messagesReducer";
 import MessagesDialog from "./MessagesDialog";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
-        newMessageText: state.messagesPage.newMessageText,
         name: state.messagesPage.messDialog.name,
         id: state.messagesPage.messDialog.id,
         messages: state.messagesPage.messDialog.messages,
@@ -13,12 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageText: (text) => {
-            dispatch(updateNewMessageTextACreator(text))
-        },
-        sendNewMessage: (e) => {
-            e.preventDefault();
-            dispatch(sendNewMessageACreator());
+        sendNewMessage: (message) => {
+            dispatch(sendNewMessageACreator(message));
         },
     }
 };

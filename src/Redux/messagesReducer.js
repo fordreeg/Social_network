@@ -1,5 +1,4 @@
 const SEND_NEW_MESSAGE = 'SEND_NEW_MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 const initialState = {
     messageInfo: {
@@ -20,7 +19,6 @@ const initialState = {
             text: 'budeIIIb katky?)',
         }]
     },
-    newMessageText: '',
 };
 
 const messagesReducer = (state = initialState, action) => {
@@ -38,7 +36,7 @@ const messagesReducer = (state = initialState, action) => {
                 name: state.messageInfo.name,
                 avatar: state.messageInfo.avatar,
                 time: datePost,
-                text: state.newMessageText,
+                text: action.message,
             }
             return {
                 ...state,
@@ -47,22 +45,11 @@ const messagesReducer = (state = initialState, action) => {
                         ...state.messDialog,
                         messages: [...state.messDialog.messages, messageItem]
                     },
-                newMessageText: '',
             };
-        case UPDATE_NEW_MESSAGE_TEXT: return {
-            ...state,
-            newMessageText: action.newMessageText,
-        };
         default:
             return state;
     }
 };
 export default messagesReducer;
 
-export const sendNewMessageACreator = () => ({type: SEND_NEW_MESSAGE});
-export const updateNewMessageTextACreator = (newMessageText) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newMessageText: newMessageText,
-    }
-};
+export const sendNewMessageACreator = (message) => ({type: SEND_NEW_MESSAGE, message});
