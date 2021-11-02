@@ -1,11 +1,13 @@
 import style from './Header.module.css'
+import {NavLink} from "react-router-dom";
 const HeaderAuthBtn = (props) => {
+    console.log(props)
     return (
         <div className={style.btn}>
             {
                 props.isLogin
-                    ? <button className={style.logout}>Logout</button>
-                    : <button className={style.logout}>Login</button>
+                    ? <NavLink to={'/login'} className={style.logout} onClick={props.logout}>Log out</NavLink>
+                    : <NavLink to={'/login'} className={style.logout}>Login</NavLink>
             }
         </div>
     )

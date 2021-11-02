@@ -1,7 +1,6 @@
 import AuthApi from "../Api/AuthApi";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
-const TOGGLE_LOGIN = 'TOGGLE_LOGIN';
 
 const initialState = {
     userId: null,
@@ -17,35 +16,49 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.userData
             };
-        case TOGGLE_LOGIN:
-            return {
-                ...state,
-                isLogin: action.isLogin
-            }
         default:
             return state;
     }
 };
 export default authReducer;
 
-export const toggleAuthAC = (isLogin) => ({type: TOGGLE_LOGIN, isLogin});
-export const setAuthDataAC = (userId, email, login) => {
+export const setAuthDataAC = (userId, email, login, isLogin) => {
     return {
         type: SET_AUTH_DATA,
-        userData: {userId, email, login}
+        userData: {userId, email, login, isLogin}
     }
 };
 
-export const signIn = () => {
+export const getAuthUserData = () => {
     return (dispatch) => {
-        AuthApi.login().then(response => {
+        AuthApi.me().then(response => {
             if(response.resultCode === 0) {
-                dispatch(toggleAuthAC(true));
                 let {id, login, email} = response.data;
-                dispatch(setAuthDataAC(id, login, email));
+                dispatch(setAuthDataAC(id, login, email, true));
             } else {
-                dispatch(toggleAuthAC(false));
+                dispatch(setAuthDataAC(null, null, null, false));
             }
         });
     }
 }
+export const login = (email, password, rememberMe, setSubmitting, setFieldError, setStatus) => {
+    return (dispatch) => {
+        AuthApi.login(email, password, rememberMe, setSubmitting, setFieldError, setStatus).then(response => {
+            if(response.resultCode === 0) {
+                dispatch(getAuthUserData());
+            } else {
+                setStatus(response.data.messages)
+            }
+        });
+    }
+}
+export const logout = () => {
+    return (dispatch) => {
+        AuthApi.logout().then(response => {
+            if(response.resultCode === 0) {
+                dispatch(setAuthDataAC(null, null, null, false))
+            }
+        });
+    }
+}
+

@@ -1,16 +1,17 @@
 import React from "react";
 import HeaderAuthBtn from "./HeaderAuthBtn";
 import {connect} from "react-redux";
-import {signIn} from "../../Redux/authReducer";
+import {getAuthUserData, logout} from "../../Redux/authReducer";
 
 class HeaderAuthBtnContainer extends React.Component {
     componentDidMount() {
-        this.props.signIn()
+        this.props.getAuthUserData()
     }
     render () {
         return (
             <HeaderAuthBtn
                 isLogin={this.props.isLogin}
+                logout={this.props.logout}
             />
         )
     }
@@ -20,4 +21,4 @@ const mapStateToProps = (state) => ({
     isLogin: state.auth.isLogin,
 });
 
-export default connect(mapStateToProps, {signIn})(HeaderAuthBtnContainer);
+export default connect(mapStateToProps, {getAuthUserData, logout})(HeaderAuthBtnContainer);
