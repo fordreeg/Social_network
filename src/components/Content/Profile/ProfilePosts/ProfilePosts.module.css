@@ -55,12 +55,6 @@
 .new__btn:active, .btn:focus {
     outline: none;
 }
-.new__btn:disabled,
-.new__btn[disabled] {
-    background-color: #cccccc;
-    color: #666666;
-    pointer-events:none;
-}
 
 .wrapper {
     display: flex;
