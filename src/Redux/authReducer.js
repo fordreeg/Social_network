@@ -41,9 +41,9 @@ export const getAuthUserData = () => {
         });
     }
 }
-export const login = (email, password, rememberMe, setSubmitting, setFieldError, setStatus) => {
+export const login = (email, password, rememberMe, setStatus) => {
     return (dispatch) => {
-        AuthApi.login(email, password, rememberMe, setSubmitting, setFieldError, setStatus).then(response => {
+        AuthApi.login(email, password, rememberMe, setStatus).then(response => {
             if(response.resultCode === 0) {
                 dispatch(getAuthUserData());
             } else {

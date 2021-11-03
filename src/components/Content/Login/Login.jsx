@@ -17,8 +17,8 @@ const Login = (props) => {
             .max(50, 'Too Long'),
     })
     
-    const onSubmitForm = (values, {setSubmitting, setFieldError, setStatus, resetForm}) => {
-        props.login(values.login, values.password, values.rememberMe, setSubmitting, setFieldError, setStatus);
+    const onSubmitForm = (values, {setSubmitting, setStatus, resetForm}) => {
+        props.login(values.login, values.password, values.rememberMe, setStatus);
         resetForm();
         setSubmitting(false);
     };

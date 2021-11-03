@@ -1,7 +1,6 @@
 import style from './Header.module.css'
 import {NavLink} from "react-router-dom";
 const HeaderAuthBtn = (props) => {
-    console.log(props)
     return (
         <div className={style.btn}>
             {
