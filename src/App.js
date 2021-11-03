@@ -4,13 +4,17 @@ import Content from "./components/Content/Content";
 import Navigation from "./components/Navigation/Navigation";
 import {Component} from "react";
 import {connect} from "react-redux";
-import {getAuthUserData,} from "./Redux/authReducer";
+import {initializeApp} from "./Redux/appReducer";
+import Preloader from "./components/Common/Preloader/Preloader";
 
 class App extends Component {
     componentDidMount() {
-        this.props.getAuthUserData()
+        this.props.initializeApp()
     }
     render() {
+        if(!this.props.initialized) {
+            return <Preloader/>
+        }
         return (
             <main className='app'>
                 <Header/>
@@ -25,5 +29,8 @@ class App extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    initialized: state.app.initialized,
+});
 
-export default connect(null, {getAuthUserData})(App);
+export default connect(mapStateToProps, {initializeApp})(App);

@@ -31,12 +31,11 @@ export const setAuthDataAC = (userId, email, login, isLogin) => {
 
 export const getAuthUserData = () => {
     return (dispatch) => {
-        AuthApi.me().then(response => {
+        return AuthApi.me().then(response => {
+            console.log(response)
             if(response.resultCode === 0) {
                 let {id, login, email} = response.data;
                 dispatch(setAuthDataAC(id, login, email, true));
-            } else {
-                dispatch(setAuthDataAC(null, null, null, false));
             }
         });
     }
@@ -44,7 +43,7 @@ export const getAuthUserData = () => {
 export const login = (email, password, rememberMe, setStatus) => {
     return (dispatch) => {
         AuthApi.login(email, password, rememberMe, setStatus).then(response => {
-            if(response.resultCode === 0) {
+            if(response.data.resultCode === 0) {
                 dispatch(getAuthUserData());
             } else {
                 setStatus(response.data.messages)
@@ -55,7 +54,7 @@ export const login = (email, password, rememberMe, setStatus) => {
 export const logout = () => {
     return (dispatch) => {
         AuthApi.logout().then(response => {
-            if(response.resultCode === 0) {
+            if(response.data.resultCode === 0) {
                 dispatch(setAuthDataAC(null, null, null, false))
             }
         });

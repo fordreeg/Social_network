@@ -1,6 +1,6 @@
 import ProfileContainer from "./Profile/ProfileContainer";
 import style from './Content.module.css'
-import {Redirect, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import UsersContainer from "./Users/UsersContainer";
 import MessagesContainer from "./Messages/MessagesContainer";
 import LoginContainer from "./Login/LoginContainer";
@@ -8,7 +8,7 @@ import LoginContainer from "./Login/LoginContainer";
 const Content = (props) => {
     return (
         <div className={style.wrapper}>
-            <Route exact path='/profile/:userId?'>
+            <Route exact path='/profile'>
                 <ProfileContainer/>
             </Route>
             <Route exact path='/messages'>
@@ -20,7 +20,6 @@ const Content = (props) => {
             <Route path='/login'>
                 <LoginContainer/>
             </Route>
-            <Redirect from='/' to='/profile'/>
         </div>
     )
 };
