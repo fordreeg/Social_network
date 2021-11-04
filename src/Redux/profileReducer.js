@@ -64,29 +64,18 @@ export const addPostACreator = (name, avatar, time, text) => {
 export const setProfileAC = (profile) => ({type: SET_PROFILE, profile});
 export const setStatusAC = (status) => ({type: SET_STATUS, status});
 export const updateStatusAC = (status) => ({type: SET_STATUS, status});
-export const getProfile = (userId) => {
-    return (dispatch) => {
-        ProfileApi.getProfileInfo(userId)
-            .then(response => {
-                dispatch(setProfileAC(response));
-            });
-    }
+export const getProfile = (userId) => async (dispatch) => {
+    let response = await ProfileApi.getProfileInfo(userId);
+    dispatch(setProfileAC(response));
 };
-export const getStatus = (userId) => {
-    return (dispatch) => {
-        ProfileApi.getProfileStatus(userId)
-            .then(response => {
-                dispatch(setStatusAC(response));
-            });
-    }
+
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await ProfileApi.getProfileStatus(userId);
+    dispatch(setStatusAC(response));
 };
-export const updateStatus = (status) => {
-    return (dispatch) => {
-        ProfileApi.updateProfileStatus(status)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(updateStatusAC(status));
-                }
-            });
+export const updateStatus = (status) => async (dispatch) =>{
+    let response = await ProfileApi.updateProfileStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(updateStatusAC(status));
     }
 };
