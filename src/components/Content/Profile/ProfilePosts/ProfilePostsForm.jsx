@@ -9,8 +9,9 @@ const ProfilePostsForm = ({profile, ...props}) => {
             .required('Required')
             .min(2, 'Too Short!')
     });
-    const onAddPost = (values) => {
-        props.addPost(profile.fullName, profile.photos.large, values.textarea)
+    const onAddPost = (values, {resetForm}) => {
+        props.addPost(profile.fullName, profile.photos.large, values.textarea);
+        resetForm();
     };
     return (
         <Formik
