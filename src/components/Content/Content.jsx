@@ -1,25 +1,30 @@
-import ProfileContainer from "./Profile/ProfileContainer";
 import style from './Content.module.css'
+import { Suspense, lazy } from 'react';
 import {Route} from "react-router-dom";
-import UsersContainer from "./Users/UsersContainer";
-import MessagesContainer from "./Messages/MessagesContainer";
-import LoginContainer from "./Login/LoginContainer";
+import Preloader from "../Common/Preloader/Preloader";
+
+const ProfileContainer = lazy(() => import('./Profile/ProfileContainer'));
+const MessagesContainer = lazy(() => import('./Messages/MessagesContainer'));
+const UsersContainer = lazy(() => import('./Users/UsersContainer'));
+const LoginContainer = lazy(() => import('./Login/LoginContainer'));
 
 const Content = (props) => {
     return (
         <div className={style.wrapper}>
-            <Route exact path='/profile'>
-                <ProfileContainer/>
-            </Route>
-            <Route exact path='/messages'>
-                <MessagesContainer/>
-            </Route>
-            <Route exact path='/users'>
-                <UsersContainer/>
-            </Route>
-            <Route path='/login'>
-                <LoginContainer/>
-            </Route>
+            <Suspense fallback={<Preloader/>}>
+                <Route exact path='/profile'>
+                    <ProfileContainer/>
+                </Route>
+                <Route exact path='/messages'>
+                    <MessagesContainer/>
+                </Route>
+                <Route exact path='/users'>
+                    <UsersContainer/>
+                </Route>
+                <Route path='/login'>
+                    <LoginContainer/>
+                </Route>
+            </Suspense>
         </div>
     )
 };
