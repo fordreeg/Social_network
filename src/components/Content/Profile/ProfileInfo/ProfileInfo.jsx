@@ -1,5 +1,5 @@
 import style from "./ProfileInfo.module.css";
-import ProfileInfoStatusWithHook from "./ProfileInfoStatus";
+import ProfileInfoStatusWithHook from "./ProfileInfoStatusWithHook";
 
 const ProfileInfo = (props) => {
     return (

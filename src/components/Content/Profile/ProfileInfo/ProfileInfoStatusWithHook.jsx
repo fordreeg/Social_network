@@ -1,17 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import style from "./ProfileInfo.module.css";
+import {login} from "../../../../Redux/authReducer";
 
 const ProfileInfoStatus = (props) => {
-    
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(props.status);
+    console.log('fff')
+    
+    useEffect(() => {
+        setStatus(props.status)
+    }, [props.status])
     
     const activateEditMode = () => {
         setEditMode(true)
     }
     
     const deactivateEditMode = () => {
-        setEditMode(true)
+        setEditMode(false)
         props.updateStatus(status);
     }
     
@@ -22,7 +27,7 @@ const ProfileInfoStatus = (props) => {
     return (
         <>
             {
-                this.state.editMode
+                editMode
                     ? <input onBlur={deactivateEditMode}
                              autoFocus={true}
                              type="text"
