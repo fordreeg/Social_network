@@ -29,35 +29,28 @@ export const setAuthDataAC = (userId, email, login, isLogin) => {
     }
 };
 
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        return AuthApi.me().then(response => {
-            console.log(response)
-            if(response.resultCode === 0) {
-                let {id, login, email} = response.data;
-                dispatch(setAuthDataAC(id, login, email, true));
-            }
-        });
+export const getAuthUserData = () => async (dispatch) => {
+    let response = await AuthApi.me();
+    if(response.resultCode === 0) {
+        let {id, login, email} = response.data;
+        dispatch(setAuthDataAC(id, login, email, true));
+    }
+    return response;
+}
+export const login = (email, password, rememberMe, setStatus) => async (dispatch) => {
+    let response = await AuthApi.login(email, password, rememberMe, setStatus);
+    
+    if(response.data.resultCode === 0) {
+        dispatch(getAuthUserData());
+    } else {
+        setStatus(response.data.messages)
     }
 }
-export const login = (email, password, rememberMe, setStatus) => {
-    return (dispatch) => {
-        AuthApi.login(email, password, rememberMe, setStatus).then(response => {
-            if(response.data.resultCode === 0) {
-                dispatch(getAuthUserData());
-            } else {
-                setStatus(response.data.messages)
-            }
-        });
-    }
-}
-export const logout = () => {
-    return (dispatch) => {
-        AuthApi.logout().then(response => {
-            if(response.data.resultCode === 0) {
-                dispatch(setAuthDataAC(null, null, null, false))
-            }
-        });
+export const logout = () => async (dispatch) => {
+    let response = await AuthApi.logout();
+    
+    if(response.data.resultCode === 0) {
+        dispatch(setAuthDataAC(null, null, null, false))
     }
 }
 

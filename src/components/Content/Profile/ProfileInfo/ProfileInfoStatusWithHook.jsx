@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from "react";
 import style from "./ProfileInfo.module.css";
-import {login} from "../../../../Redux/authReducer";
 
 const ProfileInfoStatus = (props) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(props.status);
-    console.log('fff')
     
     useEffect(() => {
         setStatus(props.status)
