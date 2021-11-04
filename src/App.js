@@ -6,6 +6,8 @@ import {Component} from "react";
 import {connect} from "react-redux";
 import {initializeApp} from "./Redux/appReducer";
 import Preloader from "./components/Common/Preloader/Preloader";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 class App extends Component {
     componentDidMount() {
@@ -33,4 +35,7 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized,
 });
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {initializeApp})
+)(App);
