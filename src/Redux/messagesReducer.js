@@ -1,3 +1,5 @@
+import getCurrentDate from "../utils/getCurrentDate";
+
 const SEND_NEW_MESSAGE = 'SEND_NEW_MESSAGE';
 
 const initialState = {
