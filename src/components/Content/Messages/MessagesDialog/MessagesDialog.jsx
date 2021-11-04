@@ -33,8 +33,9 @@ const MessagesDialog = ({messages, id, name, sendNewMessage, ...props}) => {
 
 const MessagesDialogForm = ({sendNewMessage, ...props}) => {
     
-    const onSendNewMessage = (values) => {
+    const onSendNewMessage = (values, {resetForm}) => {
         sendNewMessage(values.textarea);
+        resetForm();
     };
     
     return (
