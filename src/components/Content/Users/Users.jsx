@@ -49,6 +49,7 @@ const Users = ({totalCount, pageSize, isFetching,
                 pageSize={pageSize}
                 onPageChanged={onPageChanged}
                 currentPage={currentPage}
+                portionSize={10}
             />
         </div>
     )
