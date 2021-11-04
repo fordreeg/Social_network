@@ -70,42 +70,27 @@ export const setCurrentPageAC = (currentPage) => ({type: CURRENT_PAGE, currentPa
 export const toggleFetchingAC = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const toggleFollowingProgressAC = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
 
-export const getUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(toggleFetchingAC(true))
-        UsersApi.getUsers(currentPage, pageSize)
-            .then(response => {
-                dispatch(toggleFetchingAC(false))
-                dispatch(setUsersAC(response.items))
-                dispatch(setTotalCountAC(response.totalCount))
-            });
-    }
+export const getUsers = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(toggleFetchingAC(true))
+    let response = await UsersApi.getUsers(currentPage, pageSize);
+    dispatch(toggleFetchingAC(false))
+    dispatch(setUsersAC(response.items))
+    dispatch(setTotalCountAC(response.totalCount))
 };
 
-export const addFriend = (userId) => {
-    
-    return (dispatch) => {
-        dispatch(toggleFollowingProgressAC(true, userId))
-        UsersApi.addFriend(userId)
-            .then(response => {
-                if (response.resultCode === 0) {
-                    dispatch(addFriendAC(userId))
-                }
-                dispatch(toggleFollowingProgressAC(false, userId))
-            });
-        }
+const addFriendUnFriendFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(toggleFollowingProgressAC(true, userId))
+    let response = await apiMethod(userId);
+    if (response.resultCode === 0) {
+        dispatch(actionCreator(userId))
+    }
+    dispatch(toggleFollowingProgressAC(false, userId))
+}
+
+export const addFriend = (userId) => async (dispatch) => {
+    addFriendUnFriendFlow(dispatch, userId, UsersApi.addFriend, addFriendAC);
 };
 
-export const unFriend = (userId) => {
-    
-    return (dispatch) => {
-        dispatch(toggleFollowingProgressAC(true, userId))
-        UsersApi.unFriend(userId)
-            .then(response => {
-                if (response.resultCode === 0) {
-                    dispatch(unfriendAC(userId))
-                }
-                dispatch(toggleFollowingProgressAC(false, userId))
-            });
-    }
+export const unFriend = (userId) => async (dispatch) => {
+    addFriendUnFriendFlow(dispatch, userId, UsersApi.unFriend, unfriendAC);
 }
