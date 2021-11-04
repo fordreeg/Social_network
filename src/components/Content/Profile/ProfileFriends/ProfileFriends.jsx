@@ -2,8 +2,8 @@ import style from './ProfileFriends.module.css'
 import ProfileFriendsItem from "./ProfileFriendsItem";
 import {NavLink} from "react-router-dom";
 
-const ProfileFriends = (props) => {
-    let profileFriends = props.friends
+const ProfileFriends = ({friends, id, ...props}) => {
+    let profileFriends = friends
         .map(elem => {
             return (
                 <ProfileFriendsItem
@@ -16,7 +16,7 @@ const ProfileFriends = (props) => {
         });
     return (
         <div className={style.wrapper}>
-            <NavLink to={'/'+props.id} className={style.head}>
+            <NavLink to={'/'+id} className={style.head}>
                 <div className={style.head__title}>Friends</div>
                 <div className={style.head__count}>props.count</div>
             </NavLink>

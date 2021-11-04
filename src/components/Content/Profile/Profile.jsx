@@ -5,24 +5,24 @@ import ProfilePostsContainer from "./ProfilePosts/ProfilePostsContainer";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
 import Preloader from "../../Common/Preloader/Preloader";
 
-const Profile = (props) => {
-    if(!props.profile) {
+const Profile = ({profile, profileFriends, profilePage, updateStatus,...props}) => {
+    if(!profile) {
         return <Preloader/>
     }
     return (
         <section className={style.wrapper}>
             <div className={style.leftColumn}>
                 <ProfileAvatar
-                    photo={props.profile.photos.large}
+                    photo={profile.photos.large}
                 />
                 <ProfileFriends
-                    friends={props.profileFriends}
+                    friends={profileFriends}
                 />
             </div>
             <div className={style.rightColumn}>
-                <ProfileInfo profile={props.profile}
-                             status={props.profilePage.status}
-                             updateStatus={props.updateStatus}
+                <ProfileInfo profile={profile}
+                             status={profilePage.status}
+                             updateStatus={updateStatus}
                 />
                 <div className={style.posts}>
                     <ProfilePostsContainer/>

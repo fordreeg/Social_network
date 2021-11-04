@@ -1,20 +1,18 @@
 import style from "./ProfilePostsItem.module.css";
 
-const ProfilePostsItem = (props) => {
+const ProfilePostsItem = ({avatar, name, time, text, likes, ...props}) => {
     
     return (
         <div className={style.item}>
             <img className={style.img}
-                 src={props.avatar} alt='avatar'/>
+                 src={avatar} alt='avatar'/>
             <div className={style.info}>
-                <span className={style.name}>{props.name}</span>
-                <span className={style.time}>{props.time}</span>
-                <span className={style.text}>{props.text}</span>
+                <span className={style.name}>{name}</span>
+                <span className={style.time}>{time}</span>
+                <span className={style.text}>{text}</span>
             </div>
             <div className={style.likes}>
-                <div className={style.likes__count}>
-                    {props.likes}
-                </div>
+                <div className={style.likes__count}>{likes}</div>
                 <div className={style.likes__icon}>
                     <svg version="1.1"
                          className={style.svg}

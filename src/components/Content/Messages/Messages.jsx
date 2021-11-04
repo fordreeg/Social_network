@@ -2,12 +2,12 @@ import style from "./Messages.module.css";
 import MessagesDialogs from "./MessagesDialogs/MessagesDialogs";
 import MessagesDialogContainer from "./MessagesDialog/MessagesDialogContainer";
 
-const Messages = (props) => {
+const Messages = ({messDialogs, ...props}) => {
     
     return (
         <div className={style.wrapper}>
             <MessagesDialogs
-                messDialogs={props.messDialogs}
+                messDialogs={messDialogs}
             />
             <MessagesDialogContainer/>
         </div>

@@ -3,8 +3,11 @@ import style from './Users.module.css';
 import UsersItem from "./UsersItem/UsersItem";
 import Preloader from "../../Common/Preloader/Preloader";
 
-const Users = (props) => {
-    let pageCount = Math.ceil(props.totalCount / props.pageSize),
+const Users = ({totalCount, pageSize, isFetching,
+                   users, onAddFriend, onUnFriend,
+                   followingInProgress,
+                   onPageChanged, currentPage, ...props}) => {
+    let pageCount = Math.ceil(totalCount / pageSize),
         pages = [];
     
     for (let i = 1; i <= pageCount; i++) {
@@ -23,9 +26,9 @@ const Users = (props) => {
                 <button type='submit' className={style.btn} disabled={true}>Search</button>
             </form>
             <div className={style.userList}>
-                {props.isFetching
+                {isFetching
                     ? <Preloader/>
-                    : props.users.map(u => {
+                    : users.map(u => {
                             return (
                                 <UsersItem
                                     key={u.id}
@@ -37,9 +40,9 @@ const Users = (props) => {
                                     followed={u.followed}
                                     // country={u.location.country}
                                     // city={u.location.city}
-                                    onAddFriend={props.onAddFriend}
-                                    onUnFriend={props.onUnFriend}
-                                    followingInProgress={props.followingInProgress}
+                                    onAddFriend={onAddFriend}
+                                    onUnFriend={onUnFriend}
+                                    followingInProgress={followingInProgress}
                                 />
                             )
                         })
@@ -51,8 +54,8 @@ const Users = (props) => {
                         return (
                             <span
                                 key={p}
-                                onClick={() => {props.onPageChanged(p)}}
-                                className={props.currentPage === p ? `${style.paginationItem} ${style.selected}` : style.paginationItem}
+                                onClick={() => {onPageChanged(p)}}
+                                className={currentPage === p ? `${style.paginationItem} ${style.selected}` : style.paginationItem}
                             >
                                 {p}
                             </span>

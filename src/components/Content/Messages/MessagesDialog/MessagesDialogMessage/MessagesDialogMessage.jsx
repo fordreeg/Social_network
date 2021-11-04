@@ -1,14 +1,14 @@
 import style from "./MessagesDialogMessage.module.css";
 
-const MessagesDialogMessage = (props) => {
+const MessagesDialogMessage = ({id, avatar, name, text, time,...props}) => {
     return (
         <li className={style.item}>
-            <a href={'/' + props.id}><img src={props.avatar} alt="avatar" className={style.avatar}/></a>
+            <a href={'/' + id}><img src={avatar} alt="avatar" className={style.avatar}/></a>
             <div>
-                <a href={'/' + props.id} className={style.name}>{props.name}</a>
-                <div className={style.message}>{props.text}</div>
+                <a href={'/' + id} className={style.name}>{name}</a>
+                <div className={style.message}>{text}</div>
             </div>
-            <div className={style.time}>{props.time}</div>
+            <div className={style.time}>{time}</div>
         </li>
     )
 }

@@ -2,9 +2,9 @@ import style from "./MessagesDialog.module.css";
 import MessagesDialogMessage from "./MessagesDialogMessage/MessagesDialogMessage";
 import {Formik} from 'formik';
 
-const MessagesDialog = (props) => {
+const MessagesDialog = ({messages, id, name, sendNewMessage, ...props}) => {
     
-    const messagesDialogMessage = props.messages
+    const messagesDialogMessage = messages
         .map(elem => {
             return (
                 <MessagesDialogMessage
@@ -12,29 +12,29 @@ const MessagesDialog = (props) => {
                     name={elem.name}
                     text={elem.text}
                     time={elem.time}
-                    id={props.id}
-                    key={props.id}
+                    id={id}
+                    key={id}
                 />
             )
         });
 
     return (
         <div className={style.wrapper}>
-            <div className={style.title}><a href={'/' + props.id}>{props.name}</a></div>
+            <div className={style.title}><a href={'/' + id}>{name}</a></div>
             <div className={style.divider}/>
             <ul className={style.dialog}>
                 {messagesDialogMessage}
             </ul>
-            <MessagesDialogForm sendNewMessage={props.sendNewMessage}/>
+            <MessagesDialogForm sendNewMessage={sendNewMessage}/>
         </div>
     )
 }
 
 
-const MessagesDialogForm = (props) => {
+const MessagesDialogForm = ({sendNewMessage, ...props}) => {
     
     const onSendNewMessage = (values) => {
-        props.sendNewMessage(values.textarea);
+        sendNewMessage(values.textarea);
     };
     
     return (

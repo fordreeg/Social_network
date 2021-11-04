@@ -2,31 +2,31 @@ import style from './UsersItem.module.css';
 import {NavLink} from "react-router-dom";
 import userImg from '../../../../assets/img/user.png'
 
-const UsersItem = (props) => {
+const UsersItem = ({id, photos, status, name, onUnFriend, followingInProgress, onAddFriend, ...props}) => {
     return (
-        <div className={style.item} key={props.id}>
+        <div className={style.item} key={id}>
             <div>
-                <NavLink to={'/profile/' + props.id}>
+                <NavLink to={'/profile/' + id}>
                     <img
-                        src={props.photos ? props.photos : userImg}
+                        src={photos ? photos : userImg}
                         alt="avatar"
                         className={style.item__avatar}
                     />
                 </NavLink>
             </div>
             <div>
-                <NavLink to={'/profile/' + props.id} className={style.item__name}>{props.name} props.surname</NavLink>
-                <div className={style.item__status}>{props.status ? props.status : 'status will be here'}</div>
+                <NavLink to={'/profile/' + id} className={style.item__name}>{name} props.surname</NavLink>
+                <div className={style.item__status}>{status ? status : 'status will be here'}</div>
                 <div className={style.item__location}>props.country, props.city</div>
             </div>
             <div className={style.wrapBtn}>
                 {
                     props.followed
-                        ? <button onClick={() => {props.onUnFriend(props.id)}}
-                                  disabled={props.followingInProgress.some(id => id === props.id)}
+                        ? <button onClick={() => {onUnFriend(id)}}
+                                  disabled={followingInProgress.some(userId => userId === id)}
                                   className={style.btn}>Unfriend</button>
-                        : <button onClick={() => {props.onAddFriend(props.id)}}
-                                  disabled={props.followingInProgress.some(id => id === props.id)}
+                        : <button onClick={() => {onAddFriend(id)}}
+                                  disabled={followingInProgress.some(userId => userId === id)}
                                   className={style.btn}>+ Add Friend</button>
                 }
             </div>

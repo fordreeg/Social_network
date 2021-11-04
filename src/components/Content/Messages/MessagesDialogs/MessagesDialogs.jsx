@@ -1,9 +1,9 @@
 import style from "./MessagesDialogs.module.css";
 import MessagesDialogsItem from "./MessagesDialogsItem";
 
-const MessagesDialogs = (props) => {
+const MessagesDialogs = ({messDialogs, ...props}) => {
     
-    let messDialogs = props.messDialogs
+    let messagesDialogs = messDialogs
         .map( elem => {
             return (
                 <MessagesDialogsItem
@@ -18,7 +18,7 @@ const MessagesDialogs = (props) => {
     return (
         <ul className={style.list}>
             <li className={style.title}><h2>My messages</h2></li>
-            {messDialogs}
+            {messagesDialogs}
         </ul>
     )
 }
