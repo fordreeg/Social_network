@@ -27,7 +27,7 @@ const Profile = ({profile, profileFriends, profilePage, updateStatus, isOwner, s
                              updateStatus={updateStatus}
                 />
                 <div className={style.posts}>
-                    <ProfilePostsContainer/>
+                    <ProfilePostsContainer isOwner={isOwner}/>
                 </div>
             </div>
         </section>

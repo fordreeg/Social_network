@@ -14,6 +14,7 @@ const ProfileInfo = ({profile, status, updateStatus, ...props}) => {
                 <li className={style.item}><span>Education:</span>props.education</li>
                 <li className={style.item}><span>Website:</span><a href={profile.contacts.instagram}>{profile.contacts.instagram}</a></li>
             </ul>
+            
         </div>
     )
 }

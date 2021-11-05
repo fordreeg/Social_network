@@ -3,8 +3,7 @@ import ProfilePostsItem from "./ProfilePostsItem/ProfilePostsItem";
 import React from "react";
 import ProfilePostsForm from "./ProfilePostsForm";
 
-const ProfilePosts = ({postData, profile, addPost,...props}) => {
-    
+const ProfilePosts = ({postData, profile, addPost, isOwner, ...props}) => {
     let profilePosts = postData
         .map(elem => {
             return (
@@ -21,10 +20,12 @@ const ProfilePosts = ({postData, profile, addPost,...props}) => {
     
     return (
         <div>
-            <ProfilePostsForm
-                profile={profile}
-                addPost={addPost}
-            />
+            {
+                isOwner && <ProfilePostsForm
+                    profile={profile}
+                    addPost={addPost}
+                />
+            }
             <div className={style.wrapper}>
                 <h2 className={style.title}>My posts</h2>
                 {profilePosts}
