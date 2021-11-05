@@ -12,7 +12,7 @@ const Content = (props) => {
     return (
         <div className={style.wrapper}>
             <Suspense fallback={<Preloader/>}>
-                <Route exact path='/profile'>
+                <Route exact path='/profile/:userId?'>
                     <ProfileContainer/>
                 </Route>
                 <Route exact path='/messages'>
