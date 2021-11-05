@@ -16,6 +16,11 @@ const ProfileApi = {
     updateProfileStatus: (status) => {
         return axiosInstance.put(`profile/status`, {status})
     },
+    savePhotos: (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        return axiosInstance.put(`profile/photo`, formData)
+    },
 }
 
 export default ProfileApi;
