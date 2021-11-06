@@ -37,12 +37,12 @@ const Navigation = () => {
                     name='Find users'
                     url='/users'
                 />
-                <li className='divider'/>
-                <NavigationItem
-                    imgSrc='https://cdn-icons-png.flaticon.com/512/503/503849.png'
-                    name='Settings'
-                    url='/Settings'
-                />
+                {/*<li className='divider'/>*/}
+                {/*<NavigationItem*/}
+                {/*    imgSrc='https://cdn-icons-png.flaticon.com/512/503/503849.png'*/}
+                {/*    name='Settings'*/}
+                {/*    url='/settings'*/}
+                {/*/>*/}
             </ul>
         </nav>
     )

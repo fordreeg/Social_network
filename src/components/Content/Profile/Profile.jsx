@@ -5,7 +5,8 @@ import ProfilePostsContainer from "./ProfilePosts/ProfilePostsContainer";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
 import Preloader from "../../Common/Preloader/Preloader";
 
-const Profile = ({profile, profileFriends, profilePage, updateStatus, isOwner, savePhotos, ...props}) => {
+const Profile = ({profile, profileFriends, profilePage, updateStatus,
+                     isOwner, savePhotos, saveNewDataProfile}) => {
     if(!profile) {
         return <Preloader/>
     }
@@ -25,6 +26,8 @@ const Profile = ({profile, profileFriends, profilePage, updateStatus, isOwner, s
                 <ProfileInfo profile={profile}
                              status={profilePage.status}
                              updateStatus={updateStatus}
+                             isOwner={isOwner}
+                             saveNewDataProfile={saveNewDataProfile}
                 />
                 <div className={style.posts}>
                     <ProfilePostsContainer isOwner={isOwner}/>

@@ -1,6 +1,6 @@
 import style from "./ProfileAvatar.module.css";
 
-const ProfileAvatar = ({photo, isOwner, savePhotos, ...props}) => {
+const ProfileAvatar = ({photo, isOwner, savePhotos}) => {
     const onMainPhotosSelected = (e) => {
         if(e.target.files.length) {
             savePhotos(e.target.files[0]);

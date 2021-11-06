@@ -21,6 +21,9 @@ const ProfileApi = {
         formData.append('image', file);
         return axiosInstance.put(`profile/photo`, formData)
     },
+    saveNewDataProfile: (profile) => {
+        return axiosInstance.put(`profile`, profile)
+    },
 }
 
 export default ProfileApi;

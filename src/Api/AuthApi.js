@@ -7,8 +7,11 @@ const AuthApi = {
                 return response.data
             })
     },
-    login: (email, password, rememberMe) => {
-        return axiosInstance.post(`auth/login`, {email, password, rememberMe})
+    login: (email, password, rememberMe, captcha) => {
+        return axiosInstance.post(`auth/login`, {email, password, rememberMe, captcha})
+    },
+    getCaptcha: () => {
+        return axiosInstance.get('security/get-captcha-url')
     },
     logout: () => {
         return axiosInstance.delete(`auth/login`)

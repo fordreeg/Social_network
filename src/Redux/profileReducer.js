@@ -5,6 +5,7 @@ const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const UPDATE_STATUS = 'UPDATE_STATUS';
 const SAVE_PHOTO = 'SAVE_PHOTO';
+const SAVE_NEW_DATA_PROFILE = 'SAVE_NEW_DATA_PROFILE';
 
 const initialState = {
     profile: null,
@@ -53,6 +54,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
             };
+        case SAVE_NEW_DATA_PROFILE:
+            return {
+                ...state,
+                profile: {...state.profile, ...action.profile}
+            };
         default:
             return state;
     }
@@ -71,6 +77,7 @@ export const setProfileAC = (profile) => ({type: SET_PROFILE, profile});
 export const setStatusAC = (status) => ({type: SET_STATUS, status});
 export const updateStatusAC = (status) => ({type: SET_STATUS, status});
 export const savePhotosAC = (photos) => ({type: SAVE_PHOTO, photos});
+export const SaveNewDataProfileAC = (profile) => ({type: SAVE_NEW_DATA_PROFILE, profile});
 export const getProfile = (userId) => async (dispatch) => {
     let response = await ProfileApi.getProfileInfo(userId);
     dispatch(setProfileAC(response));
@@ -90,5 +97,15 @@ export const savePhotos = (file) => async (dispatch) =>{
     let response = await ProfileApi.savePhotos(file);
     if (response.data.resultCode === 0) {
         dispatch(savePhotosAC(response.data.data.photos));
+    }
+};
+export const saveNewDataProfile = (profile, setStatus) => async (dispatch) =>{
+    let response = await ProfileApi.saveNewDataProfile(profile, setStatus);
+    if (response.data.resultCode === 0) {
+        dispatch(SaveNewDataProfileAC(profile));
+        return true
+    } else {
+        setStatus(response.data.messages[0])
+        return response.data.messages[0]
     }
 };
