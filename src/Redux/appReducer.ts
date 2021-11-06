@@ -6,7 +6,7 @@ const initialState = {
     initialized: false,
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -21,7 +21,7 @@ export default appReducer;
 
 export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 
-export const initializeApp = () => async (dispatch) => {
+export const initializeApp = () => async (dispatch: any) => {
     await dispatch(getAuthUserData());
     dispatch(initializedSuccess())
     
