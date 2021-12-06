@@ -5,7 +5,7 @@ type propsType = {
     totalCount:number
     pageSize:number
     currentPage:number
-    portionSize:number
+    portionSize?:number
     onPageChanged: (currentPage: number) => void
 }
 

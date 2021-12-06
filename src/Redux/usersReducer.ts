@@ -8,7 +8,7 @@ const SET_TOTAL_COUNT: string = 'SET_TOTAL_COUNT';
 const TOGGLE_FETCHING: string = 'TOGGLE_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS: string = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
-type usersType = {
+export type usersType = {
     name: string
     id: number
     photos: ProfilePhotos
