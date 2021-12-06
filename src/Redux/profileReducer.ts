@@ -18,7 +18,7 @@ interface newPostType extends profileFriendsType {
     text: string | null,
     likes: string | null,
 }
-type ProfilePhotos = {
+export type ProfilePhotos = {
     large: string | null
     small: string | null
 }
