@@ -1,6 +1,5 @@
 import UsersApi from "../Api/UsersApi";
-import { ProfilePhotos } from "./profileReducer";
-
+import { ProfilePhotos } from "../typesTs/typesTS";
 const ADD_FRIEND: string = 'ADD_FRIEND';
 const UNFRIEND: string = 'UNFRIEND';
 const SET_USERS: string = 'SET_USERS';
@@ -20,7 +19,7 @@ type usersType = {
 
 const initialState = {
     users: [] as Array<usersType>,
-    totalCount: null,
+    totalCount: null as number | null,
     pageSize: 10,
     currentPage: 1,
     isFetching: true,

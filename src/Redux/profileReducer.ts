@@ -1,4 +1,5 @@
 import ProfileApi from "../Api/ProfileApi";
+import { ProfilePhotos } from "../typesTs/typesTS";
 
 const ADD_POST: string = 'ADD_POST';
 const SET_PROFILE: string = 'SET_PROFILE';
@@ -18,10 +19,7 @@ interface newPostType extends profileFriendsType {
     text: string | null,
     likes: string | null,
 }
-export type ProfilePhotos = {
-    large: string | null
-    small: string | null
-}
+
 type ProfileContact = {
     instagram: string | null
     twitter: string | null
