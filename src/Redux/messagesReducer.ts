@@ -10,7 +10,7 @@ const initialState = {
     messDialogs: [
         {id: 1, name: 'Oleg Soroka', count: 0, avatar: '#'},
         {id: 2, name: 'Koko Jumba', count: 1, avatar: '#'},
-    ],
+    ] as Array<messDialogsType>,
     messDialog: {
         id: 1,
         name: 'Oleg Soroka',
@@ -19,11 +19,24 @@ const initialState = {
             avatar: '#',
             time: '20:38 03.10.21',
             text: 'budeIIIb katky?)',
-        }]
+        }] as Array<messagesType>
     },
 };
+export type initialStateType = typeof initialState;
+type messDialogsType = {
+    id: number
+    name: string
+    count: number
+    avatar: string
+};
+type messagesType = {
+    name: string
+    avatar: string
+    time: string
+    text: string
+}
 
-const messagesReducer = (state = initialState, action) => {
+const messagesReducer = (state = initialState, action:any):initialStateType => {
     switch (action.type) {
         case SEND_NEW_MESSAGE:
             const datePost = getCurrentDate();
@@ -47,5 +60,8 @@ const messagesReducer = (state = initialState, action) => {
     }
 };
 export default messagesReducer;
-
-export const sendNewMessageACreator = (message) => ({type: SEND_NEW_MESSAGE, message});
+type sendNewMessageACreatorType = {
+    type: typeof SEND_NEW_MESSAGE,
+    message: string
+}
+export const sendNewMessageACreator = (message:string):sendNewMessageACreatorType => ({type: SEND_NEW_MESSAGE, message});

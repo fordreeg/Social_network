@@ -2,6 +2,7 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import {Redirect} from "react-router-dom";
 
+
 const Login = ({login, isLogin, captcha}) => {
     
     const onSubmitForm = (values, {setSubmitting, setStatus, resetForm}) => {
