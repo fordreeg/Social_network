@@ -1,7 +1,7 @@
 import AuthApi from "../Api/AuthApi";
 
-const SET_AUTH_DATA = 'SET_AUTH_DATA';
-const SET_CAPTCHA = 'SET_CAPTCHA';
+const SET_AUTH_DATA:string = 'SET_AUTH_DATA';
+const SET_CAPTCHA:string = 'SET_CAPTCHA';
 
 
 const initialState = {

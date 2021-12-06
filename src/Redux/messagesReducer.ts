@@ -1,6 +1,6 @@
 import getCurrentDate from "../utils/getCurrentDate";
 
-const SEND_NEW_MESSAGE = 'SEND_NEW_MESSAGE';
+const SEND_NEW_MESSAGE:string = 'SEND_NEW_MESSAGE';
 
 type messDialogs = {
     id: null | number
