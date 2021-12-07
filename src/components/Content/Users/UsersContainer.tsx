@@ -12,20 +12,25 @@ import { compose } from "redux";
 import WithAuthRedirect from "../../../HOC/withAuthRedirect";
 import { AppStateType } from "../../../Redux/reduxStore";
 
-type PropsType = {
+type mapStatePropsType = {
   currentPage: number;
   pageSize: number;
   totalCount: number;
   followingInProgress: Number[];
   isFetching: boolean;
   users: usersType[];
+};
+
+type dispatchPropsType = {
   setCurrentPageAC: (currentPage: number) => void;
   addFriend: (currentPage: number, isFetching: boolean) => void;
   unFriend: (currentPage: number, isFetching: boolean) => void;
   getUsers: (currentPage: number, pageSize: number) => void;
 };
 
-class UsersContainer extends React.Component<PropsType> {
+type ownPropsType = mapStatePropsType & dispatchPropsType;
+
+class UsersContainer extends React.Component<ownPropsType> {
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
@@ -60,7 +65,7 @@ class UsersContainer extends React.Component<PropsType> {
   }
 }
 
-const mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType): mapStatePropsType => {
   return {
     users: state.usersPage.users,
     totalCount: state.usersPage.totalCount,
@@ -73,10 +78,13 @@ const mapStateToProps = (state: AppStateType) => {
 
 export default compose(
   WithAuthRedirect,
-  connect(mapStateToProps, {
-    setCurrentPageAC,
-    getUsers,
-    addFriend,
-    unFriend,
-  })
+  connect<mapStatePropsType, dispatchPropsType, ownPropsType, AppStateType>(
+    mapStateToProps,
+    {
+      setCurrentPageAC,
+      getUsers,
+      addFriend,
+      unFriend,
+    }
+  )
 )(UsersContainer);
