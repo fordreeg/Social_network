@@ -1,4 +1,4 @@
 export type ProfilePhotos = {
-    large: string | null
-    small: string | null
-}
+  large: string | null;
+  small: string | null;
+};
